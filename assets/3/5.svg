@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#E9B12D;}
+	.st1{fill:#A9E7D8;}
+	.st2{fill:#76CFB1;}
+	.st3{fill:#AE6B5D;}
+	.st4{fill:#7770D3;}
+	.st5{fill:#5BA0F5;}
+	.st6{fill:#DA4545;}
+	.st7{fill:#89CCFC;}
+	.st8{fill:#CD462A;}
+	.st9{fill:#514896;}
+	.st10{fill:#5493A0;}
+	.st11{fill:#CC6B5C;}
+	.st12{fill:#62AA8D;}
+	.st13{fill:#8ABAAB;}
+	.st14{fill:#C3791F;}
+	.st15{fill:#E39123;}
+	.st16{fill:#FFFFFF;}
+	.st17{fill:none;stroke:#FFFFFF;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st18{fill:none;stroke:#5F55AB;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st19{fill:#A9671C;}
+	.st20{fill:#D5B3A7;}
+	.st21{fill:#C09A8F;}
+	.st22{fill:#487F87;}
+	.st23{fill:#1B305C;}
+	.st24{fill:#172945;}
+	.st25{fill:none;}
+	.st26{fill:#B62A2A;}
+	.st27{fill:#325859;}
+	.st28{fill:#3F6E71;}
+	.st29{fill:#284646;}
+	.st30{fill:#8F2727;}
+	.st31{fill:#29477C;}
+	.st32{fill:#5B9BEE;}
+	.st33{fill:#487FDE;}
+	.st34{fill:#CD9829;}
+	.st35{fill:#9F2A2A;}
+	.st36{fill:#4C3328;}
+	.st37{fill:#E8B94A;}
+	.st38{fill:#DDF8F1;}
+	.st39{fill:#3E2A22;}
+	.st40{fill:#D3A971;}
+	.st41{fill:#C79A5B;}
+	.st42{fill:#233E76;}
+	.st43{fill:#21395F;}
+	.st44{fill:#487D82;}
+	.st45{fill:none;stroke:#C79A5B;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st46{fill:#5E3E31;}
+	.st47{fill:#AC3939;}
+	.st48{fill:#CA9628;}
+	.st49{fill:#AF8F88;}
+	.st50{fill:#815048;}
+	.st51{fill:#6F4232;}
+	.st52{fill:#5F55AB;}
+	.st53{fill:#192A48;}
+	.st54{fill:#152336;}
+	.st55{fill:#192B49;}
+	.st56{fill:#264173;}
+	.st57{fill:#B06F1E;}
+	.st58{fill:#4E88C0;}
+	.st59{fill:#83C3F1;}
+	.st60{fill:#CF9929;}
+	.st61{fill:none;stroke:#FFFFFF;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st62{fill:#EAC262;}
+	.st63{fill:#D6D5D4;}
+	.st64{fill:#6BBA9B;}
+	.st65{fill:#63AA8F;}
+	.st66{fill:none;stroke:#3E2A22;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st67{fill:#CA7D1F;}
+	.st68{fill:#213B64;}
+	.st69{fill:#CDF8EC;}
+	.st70{fill:#C59125;}
+	.st71{fill:none;stroke:#C09A8F;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st72{fill:#32579B;}
+	.st73{fill:#172843;}
+	.st74{fill:#D66767;}
+	.st75{fill:#A74949;}
+	.st76{fill:#EBC76F;}
+	.st77{fill:#7A4940;}
+	.st78{fill:#182A48;}
+	.st79{fill:none;stroke:#A0794A;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st80{fill:#C37A20;}
+	.st81{fill:#D26D5C;}
+	.st82{fill:#A45752;}
+	.st83{fill:#284579;}
+	.st84{fill:#88C7F4;}
+	.st85{fill:#6EB6F0;}
+	.st86{fill:#32221E;}
+	.st87{fill:#E7A6A6;}
+	.st88{fill:#C59191;}
+	.st89{fill:#AA3B3B;}
+	.st90{fill:#B83E3E;}
+	.st91{fill:none;stroke:#5F55A9;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st92{fill:#963838;}
+	.st93{fill:#402B25;}
+	.st94{fill:#6B6ABA;}
+	.st95{fill:#BABABA;}
+	.st96{fill:#D1D1D1;}
+	.st97{fill:#264377;}
+	.st98{fill:#A19BF5;}
+	.st99{fill:#3C2A21;}
+	.st100{fill:none;stroke:#4C3328;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st101{fill:#C1781F;}
+	.st102{fill:#E3A147;}
+	.st103{fill:#F2D2A1;}
+	.st104{fill:#4F372D;}
+	.st105{fill:none;stroke:#DA4545;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st106{fill:#AA3928;}
+	.st107{fill:#8C2C22;}
+	.st108{fill:#BF4336;}
+	.st109{fill:#5797D4;}
+	.st110{fill:#CFCFCF;}
+	.st111{fill:#613A2E;}
+	.st112{fill:none;stroke:#B18653;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st113{fill:#B13B3B;}
+	.st114{fill:#16263A;}
+	.st115{fill:none;stroke:#16263A;stroke-width:10;stroke-miterlimit:10;}
+	.st116{fill:#C87D20;}
+	.st117{fill:#E4F0FD;}
+	.st118{fill:#AA3737;}
+	.st119{fill:#BF771F;}
+	.st120{fill:none;stroke:#CD462A;stroke-width:10;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st121{fill:#5696D2;}
+	.st122{fill:#C0771E;}
+	.st123{fill:#9B5F1B;}
+	.st124{fill:#A83A29;}
+	.st125{fill:#E7A74F;}
+	.st126{fill:#C9924C;}
+	.st127{fill:#C58E48;}
+	.st128{fill:#BE8844;}
+	.st129{fill:#916939;}
+	.st130{fill:#264275;}
+	.st131{fill:#253F65;}
+	.st132{fill:#182A45;}
+	.st133{fill:#162336;}
+	.st134{fill:#93C7B7;}
+	.st135{fill:#E6A4A4;}
+	.st136{fill:#B06B1D;}
+	.st137{fill:#484185;}
+	.st138{fill:#DB6E6E;}
+	.st139{fill:#6BBA9A;}
+	.st140{fill:#CACCCC;}
+	.st141{fill:#D4D4D4;}
+	.st142{fill:#A98881;}
+	.st143{fill:#213A62;}
+	.st144{fill:#A2837D;}
+	.st145{fill:#6FB8F4;}
+	.st146{fill:#9B9E9E;}
+	.st147{fill:#B2B3B3;}
+	.st148{fill:#20385D;}
+	.st149{fill:#335AA8;}
+	.st150{fill:#BCE7FD;}
+	.st151{fill:#3B2921;}
+	.st152{fill:#AD3C3C;}
+	.st153{fill:#9D3838;}
+	.st154{fill:#603F33;}
+	.st155{fill:#4D868B;}
+	.st156{fill:#A2DDFD;}
+	.st157{fill:#ECB6B6;}
+	.st158{fill:#E8A346;}
+	.st159{fill:#514C94;}
+	.st160{fill:#D2F1E8;}
+	.st161{fill:#BDD6CE;}
+	.st162{fill:#B93B29;}
+	.st163{fill:#E0AD70;}
+	.st164{fill:#C57C21;}
+	.st165{fill:#EDA34A;}
+	.st166{fill:#2F538F;}
+	.st167{fill:#2B4B78;}
+	.st168{fill:#65AF91;}
+	.st169{fill:#A7CEFC;}
+	.st170{fill:#98BDE2;}
+	.st171{fill:#CFE5F7;}
+	.st172{fill:#5492CD;}
+	.st173{fill:#97CCBC;}
+	.st174{fill:#5491CA;}
+	.st175{fill:#EDC563;}
+	.st176{fill:#423C79;}
+	.st177{fill:#D3B1A5;}
+	.st178{fill:#BE988D;}
+	.st179{fill:#A7E5D6;}
+	.st180{fill:#F2FFF9;}
+	.st181{fill:#D64545;}
+	.st182{fill:#A73B3B;}
+	.st183{fill:#15233A;}
+	.st184{fill:none;stroke:#BE988D;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st185{fill:#AF3A29;}
+	.st186{fill:#FAF9FF;}
+	.st187{fill:#CACACC;}
+	.st188{fill:#372720;}
+	.st189{fill:#3F2C26;}
+	.st190{fill:#2D201C;}
+	.st191{fill:#3D6D6F;}
+	.st192{fill:#5B54A8;}
+	.st193{fill:#325799;}
+	.st194{fill:#E8C26E;}
+	.st195{fill:#254784;}
+	.st196{fill:#5696D4;}
+	.st197{fill:#4F8AB6;}
+	.st198{fill:#5FA4AC;}
+	.st199{fill:#AA3524;}
+	.st200{fill:#D15F4D;}
+	.st201{fill:#2B294C;}
+	.st202{fill:#A43A2A;}
+	.st203{fill:#E7AE2D;}
+	.st204{fill:#CD9729;}
+	.st205{fill:none;stroke:#AA8253;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st206{fill:none;stroke:#E18F23;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st207{fill:#CF9828;}
+	.st208{fill:#B88926;}
+	.st209{fill:#A17623;}
+	.st210{fill:#96CCBC;}
+	.st211{fill:#CF9A2A;}
+	.st212{fill:#C57B20;}
+	.st213{fill:#C7F1E6;}
+	.st214{fill:#DC6363;}
+	.st215{fill:#E89F9F;}
+	.st216{fill:#C88C8C;}
+	.st217{fill:#C16E6E;}
+	.st218{fill:#A46060;}
+	.st219{fill:#AA3626;}
+	.st220{fill:#87EDC4;}
+	.st221{fill:#D86552;}
+	.st222{fill:#BC7620;}
+	.st223{fill:#BA741E;}
+	.st224{fill:#8F8CE3;}
+	.st225{fill:#3A2820;}
+	.st226{fill:#AC7060;}
+	.st227{fill:#915F55;}
+	.st228{fill:#49332A;}
+	.st229{fill:#2D1F1B;}
+	.st230{fill:#69B7BE;}
+	.st231{fill:#D6D6D6;}
+	.st232{fill:#B8B8B8;}
+	.st233{fill:#CACACA;}
+	.st234{fill:#467B80;}
+	.st235{fill:#C2EDE2;}
+	.st236{fill:#A9574F;}
+	.st237{fill:#5595D2;}
+	.st238{fill:#955949;}
+	.st239{fill:#7E4B42;}
+	.st240{fill:#89CCF1;}
+	.st241{fill:#DD584A;}
+	.st242{fill:#C18F26;}
+	.st243{fill:#B33C2A;}
+	.st244{fill:#D1A771;}
+	.st245{fill:#B42A2A;}
+	.st246{fill:#325797;}
+	.st247{fill:#9F3529;}
+	.st248{fill:#EDCE80;}
+	.st249{fill:#F0DBAC;}
+	.st250{fill:#CFB478;}
+	.st251{fill:#D4C29B;}
+	.st252{fill:#993939;}
+	.st253{fill:#D1AFA3;}
+	.st254{fill:#BC968B;}
+	.st255{fill:none;stroke:#BC968B;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st256{fill:#814C3C;}
+	.st257{fill:#C0EBE0;}
+	.st258{fill:#A5E3D4;}
+	.st259{fill:#15243C;}
+	.st260{fill:#443E79;}
+	.st261{fill:#F0FFF7;}
+	.st262{fill:#9A764B;}
+	.st263{fill:#826443;}
+	.st264{fill:#D9AA74;}
+	.st265{fill:#5DA186;}
+	.st266{fill:#68B596;}
+	.st267{fill:#E5C6BE;}
+	.st268{fill:#D3B6B1;}
+	.st269{fill:none;stroke:#BAA09C;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st270{fill:#F4D78F;}
+	.st271{fill:#20385F;}
+	.st272{fill:#BA8727;}
+	.st273{fill:#5A9C82;}
+	.st274{fill:none;stroke:#E39123;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st275{fill:#60392D;}
+	.st276{fill:#CCCCCC;}
+	.st277{fill:#844F3E;}
+	.st278{fill:#F3FFFB;}
+	.st279{fill:#365E60;}
+	.st280{fill:#D84545;}
+	.st281{fill:#A83B3B;}
+	.st282{fill:#253F70;}
+	.st283{fill:#EAADAD;}
+	.st284{fill:#443E7C;}
+	.st285{fill:#3D6B9F;}
+	.st286{fill:#4274BC;}
+	.st287{fill:#AF3827;}
+	.st288{fill:#E59D9D;}
+	.st289{fill:#C48989;}
+	.st290{fill:none;stroke:#9B621A;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st291{fill:#213A5E;}
+	.st292{fill:#2D507A;}
+	.st293{fill:#528EC8;}
+	.st294{fill:#EFD696;}
+	.st295{fill:#D1BA87;}
+	.st296{fill:#FDFCFC;}
+	.st297{fill:#86CBFC;}
+	.st298{fill:#7AB7DA;}
+	.st299{fill:#192C4C;}
+	.st300{fill:#BCBCBC;}
+	.st301{fill:#A13838;}
+	.st302{fill:#75BDF6;}
+	.st303{fill:#D0B1AA;}
+	.st304{fill:#142233;}
+	.st305{fill:#E6C4BB;}
+	.st306{fill:#BDBDBD;}
+	.st307{fill:#E8A192;}
+	.st308{fill:#A43939;}
+	.st309{fill:#162640;}
+	.st310{fill:#27457C;}
+	.st311{fill:#EFBE5E;}
+	.st312{fill:#87EDC5;}
+	.st313{fill:#A03838;}
+	.st314{fill:#833232;}
+	.st315{fill:#47417F;}
+	.st316{fill:none;stroke:#915F55;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st317{fill:#BC8B25;}
+	.st318{fill:#473129;}
+	.st319{fill:#67B394;}
+	.st320{fill:#599A80;}
+	.st321{fill:#B13D3D;}
+</style>
+<g id="BULINE">
+	<circle id="XMLID_2366_" class="st11" cx="256" cy="256" r="256"/>
+	<g>
+	</g>
+</g>
+<g id="Icons">
+	<g id="XMLID_3181_">
+		<path id="XMLID_3365_" class="st236" d="M512,256c0,69.3-27.5,132.1-72.2,178.2c-20.1,20.7-43.6,38-69.7,51
+			c-1.5,0.7-3,1.5-4.5,2.2c-10.2,4.9-20.8,9-31.7,12.5c-5.8,1.9-11.7,3.5-17.7,5c-11.2-0.1-22.7-0.3-34.2-0.3
+			c-43.8,0-83.1-15-110.4-38.8c-2-1.8-4-3.6-5.9-5.5c-10.8,7.6-22.8,13.9-35.8,18.5c-2.6-1.5-5.2-3-7.7-4.6
+			c-10.8-6.7-21.2-14.1-30.9-22.3c-0.1-0.1-0.2-0.2-0.4-0.3C35.3,404.8,0,334.5,0,256c0-55,17.3-105.9,46.9-147.7
+			c11.9,28.1,19.7,67.9,21,112.5c0.1,4.8,4.1,8.6,8.9,8.6h0.1c19.8,0,38.8,3.6,55.9,10.1h0c26.7,10.1,49.3,27.3,64.9,48.9
+			c0.1-0.1,0.3-0.1,0.4-0.2c0.1-0.1,0.3-0.1,0.4-0.2c4.8-2.6,9.8-4.9,15-7.1c2.2-0.9,4.4-1.8,6.7-2.6c11.3-4.1,23.4-7.1,36.1-8.9
+			c8.4-1.1,17-1.8,25.8-1.8c6,0,11.9,0.3,17.7,0.8c12.1,1.1,23.7,3.4,34.7,6.7c9.1,2.7,18.2,2.2,26.2-0.7c9.4-3.4,17.4-10,22.4-18.7
+			l0,0c3.6-6.3,5.8-13.6,5.7-21.5v-0.8c0-1.8,0-3.6,0-5.3v0c0.3-23,2.3-44.8,5.7-64.6c7.6-43.8,22.1-77.5,39.8-91.3
+			C482.2,118.8,512,183.9,512,256z"/>
+		<path id="XMLID_3218_" class="st16" d="M195.8,65.3c0-18-14.6-32.6-32.6-32.6c-16.3,0-29.8,12-32.2,27.7
+			c-15.8,2.3-28,15.8-28,32.3c0,4.7,1,9.1,2.8,13.2c-11.7,4.9-19.9,16.5-19.9,30.1c0,18,14.6,32.6,32.6,32.6
+			c18,0,32.6-14.6,32.6-32.6c0-4.7-1-9.1-2.8-13.2c10.3-4.3,17.8-13.8,19.6-25.1C183.7,95.4,195.8,81.8,195.8,65.3z"/>
+		<path id="XMLID_3217_" class="st16" d="M355.6,105.8c1.8-4,2.8-8.5,2.8-13.2c0-16.4-12.2-30-28-32.3
+			c-2.4-15.7-15.9-27.7-32.2-27.7c-18,0-32.6,14.6-32.6,32.6c0,16.4,12.2,30,28,32.3c1.7,11.4,9.3,20.8,19.6,25.1
+			c-1.8,4-2.8,8.5-2.8,13.2c0,18,14.6,32.6,32.6,32.6c18,0,32.6-14.6,32.6-32.6C375.5,122.4,367.3,110.8,355.6,105.8z"/>
+		<path id="XMLID_3264_" class="st5" d="M439.8,355.5v78.7c-20.1,20.7-43.6,38-69.7,51h-4.5v2.2c-10.2,4.9-20.8,9-31.7,12.5
+			c-5.8,1.9-11.7,3.5-17.7,5c-19.3,4.6-39.4,7.1-60.1,7.1c-29.6,0-58-5-84.4-14.3c-14.5-5.1-28.4-11.4-41.6-18.9
+			c-2.6-1.5-5.2-3-7.7-4.6c-10.8-6.7-21.2-14.1-30.9-22.3v-84.4c0-3.5,0.4-6.9,1.1-10.1c4.6-21.3,23.3-37.4,45.9-38
+			c0.4,0,0.8,0,1.1,0h178.1c22.8,0,41.9,15.9,46.8,37.1c0.8,3.5,1.2,7.2,1.2,11v44.1c0,2.3,0.9,4.4,2.5,5.9c1.5,1.5,3.6,2.4,5.9,2.4
+			c4.6,0,8.4-3.7,8.4-8.4v-56.3H439.8z"/>
+		<path id="XMLID_3253_" class="st237" d="M170.3,319.5c-26.6,0-48.1,21.5-48.1,48.1v106.6c-10.8-6.7-21.2-14.1-30.9-22.3
+			c-0.1-0.1-0.2-0.2-0.4-0.3v-84.1c0-26.3,21.1-47.7,47.3-48.1c0.4,0,0.8,0,1.1,0H170.3z"/>
+		<path id="XMLID_3214_" class="st20" d="M236.4,339.6h-15.5c-12.4,0-22.5-10.1-22.5-22.5v-37c0-12.4,10.1-22.5,22.5-22.5h15.5
+			c12.4,0,22.5,10.1,22.5,22.5v37C258.9,329.6,248.8,339.6,236.4,339.6z"/>
+		<path id="XMLID_3213_" class="st21" d="M239.2,339.4c-1.1,0.2-2.1,0.2-3.2,0.2h-15.5c-12.4,0-22.5-10.1-22.5-22.5v-37
+			c0-12.4,10.1-22.5,22.5-22.5H236c1.1,0,2.2,0.1,3.2,0.2c-10.9,1.6-19.2,10.9-19.2,22.2v37C220,328.5,228.4,337.8,239.2,339.4z"/>
+		<path id="XMLID_3212_" class="st20" d="M340.3,153h-2.5v-17.1c0-60.6-49.1-109.7-109.7-109.7h0c-60.6,0-109.7,49.1-109.7,109.7
+			v49.6c0,60.6,49.1,109.7,109.7,109.7h0c56.4,0,102.8-42.6,109-97.3h3.2c8.4,0,15.2-6.8,15.2-15.2v-14.5
+			C355.5,159.7,348.7,153,340.3,153z"/>
+		<path id="XMLID_3211_" class="st21" d="M157.6,185.4v-49.6c0-53.9,38.9-98.7,90.1-107.9c-6.3-1.1-12.9-1.7-19.6-1.7
+			c-60.6,0-109.7,49.1-109.7,109.7V153h-2.1c-8.4,0-15.2,6.8-15.2,15.2v14.5c0,8.4,6.8,15.2,15.2,15.2h2.8
+			c6.1,54.8,52.6,97.3,109,97.3c6.7,0,13.2-0.6,19.6-1.7C196.5,284.1,157.6,239.3,157.6,185.4z"/>
+		<path id="XMLID_3210_" class="st21" d="M234.8,202.6h-13.6c-4.5,0-8.1-3.6-8.1-8.1v0c0-4.5,3.6-8.1,8.1-8.1h13.6
+			c4.5,0,8.1,3.6,8.1,8.1v0C242.9,198.9,239.3,202.6,234.8,202.6z"/>
+		<path id="XMLID_3209_" class="st36" d="M257.7,221.1c1.6,0,2.9,1.3,2.9,2.9l0,0c0,3-0.4,5.8-1.1,8.5c-1.7,6.3-5.3,11.9-10.1,16
+			c-5.7,5-13.2,8-21.4,8c-8.2,0-15.7-3-21.4-8c-4.8-4.2-8.4-9.7-10.1-16c-0.7-2.7-1.1-5.6-1.1-8.5l0,0c0-1.6,1.3-2.9,2.9-2.9H257.7z
+			"/>
+		<path id="XMLID_3208_" class="st26" d="M249.4,248.5c-5.7,5-13.2,8-21.4,8c-8.2,0-15.7-3-21.4-8c5.7-5,13.2-8,21.4-8
+			C236.2,240.5,243.7,243.5,249.4,248.5z"/>
+		<path id="XMLID_3207_" class="st16" d="M257.7,221.1c1.6,0,2.9,1.3,2.9,2.9l0,0c0,3-0.4,5.8-1.1,8.5h-62.9
+			c-0.7-2.7-1.1-5.6-1.1-8.5l0,0c0-1.6,1.3-2.9,2.9-2.9H257.7z"/>
+		<path id="XMLID_3249_" class="st238" d="M364.3,356.7l-26.3,30.6c-2.7,3.2-4.2,7.2-4.2,11.4v101.2c-5.8,1.9-11.7,3.5-17.7,5
+			c-19.3,4.6-39.4,7.1-60.1,7.1c-29.6,0-58-5-84.4-14.3c-14.5-5.1-28.4-11.4-41.6-18.9c-2.6-1.5-5.2-3-7.7-4.6v-75.6
+			c0-4.2-1.5-8.2-4.2-11.4l-25.6-29.8c4.6-21.3,23.3-37.4,45.9-38c0.4,0,0.8,0,1.1,0h38.9l0.5,1h0l9.2,17.8l33.7,65
+			c2.6,5,9.8,5,12.4,0l33.2-64.1l10.2-19.7h39.8C340.3,319.5,359.4,335.4,364.3,356.7z"/>
+		<path id="XMLID_3244_" class="st239" d="M178.9,320.6L178.9,320.6c-1.3,0.3-2.6,0.6-3.9,1c-0.6,0.2-1.1,0.4-1.6,0.5
+			c-22.7,8-30.4,36.8-14.5,55.3l8.5,9.9c2.7,3.2,4.2,7.2,4.2,11.4v99.1c-14.5-5.1-28.4-11.4-41.6-18.9c-2.6-1.5-5.2-3-7.7-4.6v-75.6
+			c0-4.2-1.5-8.2-4.2-11.4l-25.6-29.8c4.6-21.3,23.3-37.4,45.9-38c0.4,0,0.8,0,1.1,0h38.9L178.9,320.6z"/>
+		<path id="XMLID_3204_" class="st240" d="M280.4,311.9l-7-2.7c-3.1-1.2-6.7-0.7-9.3,1.5l-35.9,29.1l-35.9-29.1
+			c-2.6-2.1-6.1-2.7-9.3-1.5l-7,2.7c-4.3,1.7-5.5,7.1-2.5,10.5l38.9,42.8c1.9,2.1,5.3,1.5,6.3-1.1l6.4-16c1.1-2.7,4.9-2.7,6,0
+			l6.4,16c1,2.6,4.4,3.2,6.3,1.1l38.9-42.8C286,318.9,284.7,313.5,280.4,311.9z"/>
+		<path id="XMLID_3203_" class="st23" d="M280.8,120.5c-20.8,0-38.1,14.9-41.8,34.7h-21.8c-3.7-19.7-21-34.7-41.8-34.7
+			c-23.5,0-42.6,19.1-42.6,42.6c0,23.5,19.1,42.6,42.6,42.6c20.8,0,38.1-14.9,41.8-34.7h21.8c3.7,19.7,21,34.7,41.8,34.7
+			c23.5,0,42.6-19.1,42.6-42.6C323.3,139.6,304.3,120.5,280.8,120.5z"/>
+		<circle id="XMLID_3202_" class="st235" cx="175.3" cy="163.1" r="32.3"/>
+		<circle id="XMLID_3201_" class="st235" cx="280.8" cy="163.1" r="32.3"/>
+		<path id="XMLID_3200_" class="st71" d="M291.3,166.6c-5.8-5.8-15.2-5.8-21,0"/>
+		<path id="XMLID_3199_" class="st71" d="M186.7,166.6c-5.8-5.8-15.2-5.8-21,0"/>
+		<g id="XMLID_3184_">
+			<path id="XMLID_3198_" class="st14" d="M447.6,331.6l-69.8,8.8c-4.8,0.6-9.3-2.8-9.9-7.7l-19.6-154.5c-0.6-4.8,2.8-9.3,7.7-9.9
+				l69.8-8.8c4.8-0.6,9.3,2.8,9.9,7.7l19.6,154.5C455.9,326.6,452.5,331,447.6,331.6z"/>
+			<g id="XMLID_3186_">
+				<path id="XMLID_3234_" class="st0" d="M453.5,349.4L384.6,335c-4.8-1-7.8-5.7-6.8-10.5l31.8-152.4c1-4.8,5.7-7.8,10.5-6.8
+					l68.9,14.4c4.8,1,7.8,5.7,6.8,10.5l-31.8,152.4C463,347.3,458.3,350.4,453.5,349.4z"/>
+				<path id="XMLID_3196_" class="st15" d="M470.4,273.8l-13,62.5c-0.6,2.9-3.5,4.8-6.4,4.2l-60.7-12.7c-2.9-0.6-4.8-3.5-4.2-6.4
+					l13-62.5L470.4,273.8z"/>
+				<path id="XMLID_3195_" class="st16" d="M441.5,197.8l-1.1,5.4l-19.3,17.3c-0.8,0.7-1.3,1.6-1.5,2.6l-0.6,2.8
+					c-0.9,4.3,3.9,7.5,7.5,4.9l9.5-6.6l-2.5,12l-9.2,3.8c-0.4,0.2-0.7,0.5-0.8,0.9l-0.5,2.4c-0.1,0.7,0.3,1.3,1,1.5l7.4,1.5l7.2,1.5
+					c4.7,1,9.3-2,10.2-6.7l1.9-8.9l6,9.8c2.3,3.7,8,2.7,8.9-1.5l0.6-2.8c0.2-1,0.1-2.1-0.3-3l-10.7-23.4l4.4-20.9
+					c0.3-1.4-0.6-2.7-1.9-3h0C450.2,185.8,443,190.5,441.5,197.8z"/>
+				<line id="XMLID_3193_" class="st17" x1="399.9" y1="259.1" x2="412.9" y2="261.8"/>
+				<line id="XMLID_3192_" class="st17" x1="428.5" y1="265.1" x2="441.4" y2="267.8"/>
+				<line id="XMLID_3191_" class="st17" x1="456.3" y1="270.9" x2="469.3" y2="273.6"/>
+				<line id="XMLID_3189_" class="st18" x1="401.3" y1="315.3" x2="408.8" y2="279.3"/>
+				<line id="XMLID_3188_" class="st18" x1="446.5" y1="324.8" x2="454" y2="288.7"/>
+				<line id="XMLID_3187_" class="st18" x1="424.4" y1="313.2" x2="429.1" y2="290.5"/>
+			</g>
+			<path id="XMLID_3185_" class="st19" d="M409.5,172.1l-31.8,152.4c-1,4.8,2.1,9.5,6.8,10.5l-8.7-1.8c-4.8-1-7.8-5.7-6.8-10.5
+				l31.8-152.4c1-4.8,5.7-7.8,10.5-6.8l8.7,1.8C415.2,164.3,410.5,167.3,409.5,172.1z"/>
+		</g>
+		<path id="XMLID_3183_" class="st20" d="M439.8,355.5h-57.5v-34.3c0-15.9,12.9-28.7,28.7-28.7h0c15.9,0,28.7,12.9,28.7,28.7V355.5z
+			"/>
+		<path id="XMLID_3182_" class="st21" d="M419.5,293.7c-11.8,3.6-20.3,14.5-20.3,27.5v34.3h-16.8v-34.3c0-15.9,12.9-28.7,28.7-28.7
+			C414,292.4,416.8,292.8,419.5,293.7z"/>
+	</g>
+</g>
+</svg>
