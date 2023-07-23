@@ -216,7 +216,7 @@ export default function App({ theme, setTheme }) {
     <MyContext.Provider value={{ filters, setFilters, filterValue, imgProps, setImgProps, currentTab, addToHistory, canvasProps, setCanvasProps, eventFlag }}>
       <Box bg="var(--bg)" h="100vh">
         <Flex bg="var(--top-bg)" paddingBlock=".3em" borderBottom="1px solid #666" justifyContent="space-between" alignItems="center">
-          <Box color="var(--color)" bg="var(--top-button-bg)" p=".6em" ><FontAwesomeIcon icon="fa-bars" style={{ marginRight: ".75em", fontSize: "1.25em" }} />PhotoShopper</Box>
+          <Box color="var(--color)" bg="var(--top-button-bg)" p=".6em" ml=".5em">PhotoShopper</Box>
           <HStack w="max-content">
             <FormLabel w="6em" bg="var(--top-button-bg)" p=".5em" position="relative" top=".25em" borderRadius=".25em" textAlign="center" color="var(--color)" _hover={{ outline: "1px solid var(--top-button-hover)", cursor: "pointer" }}><FontAwesomeIcon icon="fa-folder-open" style={{ marginRight: ".5em" }} /> Open <Input type="file" display="none" accept=".png ,.jpg, .jpeg" onChange={e => readImage(e)} /></FormLabel>
             <Button onClick={e => Save(e)} bg="var(--top-button-bg)" color="var(--color)" _hover={{ outline: "1px solid var(--top-button-hover)" }}><FontAwesomeIcon icon="fa-download" style={{ marginRight: ".5em" }} />Save</Button>
