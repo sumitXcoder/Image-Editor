@@ -24,9 +24,9 @@ const MySlider = ({ min = 0, max = 100, defaultValue = 2, value, callback }) => 
 }
 export default function Markup() {
     const { currentTab, addToHistory } = useContext(MyContext)
-    const brushType = ["Pencil", "Circle", "Spray", "Marker", "Eraser"]
+    const brushType = ["Pencil", "Circle", "Spray", "Eraser"]
     const [tab, setTab] = useState(0)
-    const [brushes, setBrushes] = useState([{ width: 2, color: "#000" }, { width: 2, color: "#000" }, { width: 30, color: "#000", density: 50 }, { width: 2, color: "#000" }, { width: 5 }])
+    const [brushes, setBrushes] = useState([{ width: 2, color: "#000" }, { width: 2, color: "#000" }, { width: 30, color: "#000", density: 50 },{ width: 5 }])
     var i = 0
     const handleChange = obj => {
         const data = [...brushes]
@@ -60,7 +60,7 @@ export default function Markup() {
             <Box w="max-content" sx={panelStyle}>
                 <Tabs variant="unstyled" onChange={index => setTab(index)}>
                     <TabList>
-                        {[<BsPencil />, <BsCircle />, <TfiSpray />, <TfiMarker />, <BsEraser />].map(item => {
+                        {[<BsPencil />, <BsCircle />, <TfiSpray />, <BsEraser />].map(item => {
                             return (<Tab key={i++} color="var(--color)" _selected={{ boxShadow: "0 0 1px 1px lightblue", bg: "var(--active-tab-color)", borderRadius: ".25em" }}>{item}</Tab>)
                         })}
                     </TabList>
@@ -92,14 +92,6 @@ export default function Markup() {
                         </TabPanel>
                         <TabPanel>
                             <Property prop="width" index={brushes[3]} />
-                            <MySlider value={"width"} callback={handleChange} />
-                            <FormLabel>Color
-                                <Input type="color" size="2em" width="2em" height="2em" border="1px solid var(--outline-color)" position="relative" top=".4em" left="1em" onChange={color => handleChange({ color: color.target.value.toUpperCase() })
-                                } />
-                            </FormLabel>
-                        </TabPanel>
-                        <TabPanel>
-                            <Property prop="width" index={brushes[4]} />
                             <MySlider defaultValue={5} value={"width"} callback={handleChange} />
                             <MyCheckbox w="7.5em" value="Erase Image" mt=".5em" onChange={e => myCanvas.current._objects[0].erasable = e.target.checked} />
                         </TabPanel>
