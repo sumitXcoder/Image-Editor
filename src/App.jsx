@@ -115,8 +115,8 @@ export default function App({ theme, setTheme }) {
   //remove warnings
   useEffect(() => {
     console.clear()
+    setMedium(window.innerWidth < 960)
     window.onresize = () => setMedium(window.innerWidth < 960)
-
   }, [])
 
   const readImage = e => {
@@ -269,11 +269,10 @@ export default function App({ theme, setTheme }) {
   return (
     <MyContext.Provider value={{ filters, setFilters, filterValue, imgProps, setImgProps, currentTab, addToHistory, canvasProps, setCanvasProps, eventFlag }}>
       <Box bg="var(--bg)" h="100vh" w="100%" overflowY="hidden" >
-        <Flex bg="var(--top-bg)" paddingBlock=".3em" borderBottom="1px solid #666" justifyContent={medium ? "space-around" : "space-between"} alignItems="center">
-          <Box color="var(--color)" bg="var(--top-button-bg)" p=".6em" ml="1em"><FontAwesomeIcon icon="fa-camera" style={{
-            marginRight:
-              medium ? "0" : ".5em"
-          }} />{medium ? "" : "PhotoShopper"}</Box>
+        <Flex bg="var(--top-bg)" paddingBlock=".3em" borderBottom="1px solid #666" justifyContent={medium ? "space-around" : "space-between"} alignItems="center">{
+          !medium &&
+          <Box color="var(--color)" bg="var(--top-button-bg)" p=".6em" ml="1em"><FontAwesomeIcon icon="fa-camera" style={{ marginRight: ".5em" }} />PhotoShopper</Box>
+        }
           {medium &&
             <>
               <FullScreen isMedium={medium} />
@@ -286,26 +285,24 @@ export default function App({ theme, setTheme }) {
           <HStack >
             <FormLabel w="max-content" bg="var(--top-button-bg)" p=".5em" position="relative" top=".25em" borderRadius=".25em" textAlign="center" color="var(--color)" _hover={{ outline: "1px solid var(--top-button-hover)", cursor: "pointer" }}><FontAwesomeIcon icon="fa-folder-open" style={{ marginRight: medium ? "0" : ".5em" }} />{medium ? "" : "Open"}
               <Input type="file" display="none" accept=".png ,.jpg, .jpeg" onChange={e => readImage(e)} /></FormLabel>
-            <Button onClick={e => Save(e)} w="max-content" bg="var(--top-button-bg)" color="var(--color)" _hover={{ outline: "1px solid var(--top-button-hover)" }}><FontAwesomeIcon icon="fa-download" style={{ marginRight: medium ? "0" : ".5em" }} />{medium ? "" : "Save"}</Button>
+            <Button onClick={e => Save(e)} w={medium ? "1em" : "max-content"} bg="var(--top-button-bg)" color="var(--color)" _hover={{ outline: "1px solid var(--top-button-hover)" }}><FontAwesomeIcon icon="fa-download" style={{ marginRight: medium ? "0" : ".5em" }} />{medium ? "" : "Save"}</Button>
           </HStack>
-          <Button color="var(--top-button-bg)" w="3em" h="2.5em" mr="1em" bg="var(--top-button-bg)" onClick={() => { setTheme(t => !t) }} _hover={{ outline: "1px solid var(--top-button-hover)" }}><FontAwesomeIcon icon={theme ? "fa-moon" : "fa-sun"} style={{ fontSize: "1.2em", color: theme ? "white" : "#ac9a46" }} /></Button>
+          <Button color="var(--top-button-bg)" mr="1em" bg="var(--top-button-bg)" onClick={() => setTheme(t => !t)} _hover={{ outline: "1px solid var(--top-button-hover)" }}><FontAwesomeIcon icon={theme ? "fa-moon" : "fa-sun"} style={{ fontSize: "1.2em", color: theme ? "white" : "#ac9a46" }} /></Button>
         </Flex>
         <Box position="absolute" top="50%" left="60%" transform="translate(-50%,-50%)" p="0" zIndex="5" ref={wrapperRef} bg="var(--top-button-bg)" outline="1px dotted var(--color)">
           <canvas ref={canvasRef} style={{ zIndex: "0" }}></canvas>
         </Box>
         <Tabs orientation={medium ? "horizontal" : "vertical"} onChange={e => setCurrentTab(e)} paddingLeft=".25em" w="100%">
-          <Box position="relative" style={medium ? { top: "80vh" } : {}}>
+          <Box position="relative" style={medium ? { top: window.innerHeight - 105 } : {}}>
             <TabList style={medium ? { ...sideBar.sx, ...sideBar.horizontal } : { ...sideBar.sx, ...sideBar.vertical }} _hover={medium ? { ...sideBar.hover, width: "auto" } : sideBar.hover} >
               {tabs.map(tab => {
                 return (
-                  <>
-                    <Tooltip label={tab[0]} placement={medium ? "top" : "right"} hasArrow bg="var(--top-bg)" boxShadow="0 0 5px 1px rgba(25,25,25,.25)"
-                      padding=".5em" color="var(--color)">
-                      <Tab key={tab[0]} sx={tabStyles.sx} _selected={tabStyles.selected} _hover={tabStyles.hover}>
-                        <FontAwesomeIcon icon={"fa-" + tab[1]} style={{ fontSize: "1.25em" }} />
-                      </Tab>
-                    </Tooltip>
-                  </>
+                  <Tooltip label={tab[0]} placement={medium ? "top" : "right"} hasArrow bg="var(--top-bg)" boxShadow="0 0 5px 1px rgba(25,25,25,.25)"
+                    padding=".5em" color="var(--color)">
+                    <Tab key={tab[0]} sx={tabStyles.sx} _selected={tabStyles.selected} _hover={tabStyles.hover}>
+                      <FontAwesomeIcon icon={"fa-" + tab[1]} style={{ fontSize: "1.25em" }} />
+                    </Tab>
+                  </Tooltip>
                 )
               })}
             </TabList>
