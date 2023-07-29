@@ -268,7 +268,7 @@ export default function App({ theme, setTheme }) {
 
   return (
     <MyContext.Provider value={{ filters, setFilters, filterValue, imgProps, setImgProps, currentTab, addToHistory, canvasProps, setCanvasProps, eventFlag }}>
-      <Box bg="var(--bg)" h="100vh" w="100%" overflowY="hidden" >
+      <Box bg="var(--bg)" h="100vh" w="100%" overflow="hidden" position="relative" margin="0" fontSize="clamp(12px,2vw,1em)">
         <Flex bg="var(--top-bg)" paddingBlock=".3em" borderBottom="1px solid #666" justifyContent={medium ? "space-around" : "space-between"} alignItems="center">{
           !medium &&
           <Box color="var(--color)" bg="var(--top-button-bg)" p=".6em" ml="1em"><FontAwesomeIcon icon="fa-camera" style={{ marginRight: ".5em" }} />PhotoShopper</Box>
@@ -293,7 +293,7 @@ export default function App({ theme, setTheme }) {
           <canvas ref={canvasRef} style={{ zIndex: "0" }}></canvas>
         </Box>
         <Tabs orientation={medium ? "horizontal" : "vertical"} onChange={e => setCurrentTab(e)} paddingLeft=".25em" w="100%">
-          <Box position="relative" style={medium ? { top: window.innerHeight - 105 } : {}}>
+          <Box position="absolute" style={medium ? { bottom: "2px" } : {}} w="100%">
             <TabList style={medium ? { ...sideBar.sx, ...sideBar.horizontal } : { ...sideBar.sx, ...sideBar.vertical }} _hover={medium ? { ...sideBar.hover, width: "auto" } : sideBar.hover} >
               {tabs.map(tab => {
                 return (
@@ -308,21 +308,21 @@ export default function App({ theme, setTheme }) {
             </TabList>
           </Box>
           <TabPanels >
-            <TabPanel mt="1vh"><Adjust /></TabPanel>
-            <TabPanel mt="5vh"><Markup /></TabPanel>
-            <TabPanel mt="10vh"><Text /></TabPanel>
-            <TabPanel mt="15vh"><Pixelate /></TabPanel>
-            <TabPanel mt="20vh"><Blur /></TabPanel>
-            <TabPanel mt="25vh"><Vibrance /></TabPanel>
-            <TabPanel mt="30vh"><Noise /></TabPanel>
-            <TabPanel mt="35vh"><RemoveColor /></TabPanel>
-            <TabPanel mt="40vh"><Gamma /></TabPanel>
-            <TabPanel mt="50vh"><Convolute /></TabPanel>
-            <TabPanel mt="50vh"><Rotate /></TabPanel>
-            <TabPanel mt="55vh"><ImageFilters /></TabPanel>
-            <TabPanel mt="45vh"><Stickers /></TabPanel>
-            <TabPanel mt="55vh"><Resize /></TabPanel>
-            <TabPanel mt="55vh"><Crop /></TabPanel>
+            <TabPanel ml="3em"  ><Adjust /></TabPanel>
+            <TabPanel ml="3em"  ><Markup /></TabPanel>
+            <TabPanel ml="3em"  mt="10vh"><Text /></TabPanel>
+            <TabPanel ml="3em"  mt="15vh"><Pixelate /></TabPanel>
+            <TabPanel ml="3em"  mt="20vh"><Blur /></TabPanel>
+            <TabPanel ml="3em"  mt="25vh"><Vibrance /></TabPanel>
+            <TabPanel ml="3em"  mt="30vh"><Noise /></TabPanel>
+            <TabPanel ml="3em"  mt="35vh"><RemoveColor /></TabPanel>
+            <TabPanel ml="3em"  mt="40vh"><Gamma /></TabPanel>
+            <TabPanel ml="3em"  mt="50vh"><Convolute /></TabPanel>
+            <TabPanel ml="3em"  mt="50vh"><Rotate /></TabPanel>
+            <TabPanel ml="3em"  mt="55vh"><ImageFilters /></TabPanel>
+            <TabPanel ml="3em"  mt="45vh"><Stickers /></TabPanel>
+            <TabPanel ml="3em"  mt="55vh"><Resize /></TabPanel>
+            <TabPanel ml="3em"  mt="55vh"><Crop /></TabPanel>
           </TabPanels>
         </Tabs>
         {

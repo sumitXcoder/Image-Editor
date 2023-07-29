@@ -39,9 +39,12 @@ const CropBox = ({ currentTab, imageCropped }) => {
         pos[2] = e.clientX
         pos[3] = e.clientY
         window.onmousemove = dragMouseMove
+        window.ontouchmove=dragMouseMove
         window.onmouseup = () => {
             window.onmousemove = null
+            window.ontouchmove=null
             window.onmouseup = null
+            window.ontouchend=null
         }
     }
     const dragMouseMove = e => {
@@ -80,7 +83,9 @@ const CropBox = ({ currentTab, imageCropped }) => {
             parent.current.style.height = gapTop + resize.height - (gapTop + resize.height - canvas.height) + "px"
         }
         window.onmousemove = null
+        window.ontouchmove=null
         window.onmouseup = null
+        window.ontouchend=null
     }
     const controlStyle = {
         fontSize: ".8em",
@@ -225,7 +230,7 @@ const CropBox = ({ currentTab, imageCropped }) => {
 
     return (
         <Box ref={parent} position="absolute" width="75px" height="60px"
-        cursor="move" onMouseDown={e => dragMouseDown(e)}
+        cursor="move" onMouseDown={e => dragMouseDown(e)} onTouchStart={e=>dragMouseDown(e)}
         outline="1px solid white" bg="#FFFFFF30" zIndex="10">
                 {console.log("rendered crop box")}
             <Control props={{ index: 0, style: { left: "-1em", top: "-1em", clipPath: "polygon(0% 0%, 100% 0%,100% 35%,35% 35%,35% 100%,0% 100%)", cursor: "nwse-resize" } }} />
