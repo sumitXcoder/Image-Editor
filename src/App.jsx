@@ -268,7 +268,7 @@ export default function App({ theme, setTheme }) {
 
   return (
     <MyContext.Provider value={{ filters, setFilters, filterValue, imgProps, setImgProps, currentTab, addToHistory, canvasProps, setCanvasProps, eventFlag }}>
-      <Box bg="var(--bg)" h="100vh" w="100%" overflow="hidden" position="relative" margin="0" fontSize="clamp(12px,2vw,1em)">
+      <Box bg="var(--bg)" h="100dvh" w="100%" overflow="hidden" position="relative" margin="0" fontSize="clamp(12px,2vw,1em)">
         <Flex bg="var(--top-bg)" paddingBlock=".3em" borderBottom="1px solid #666" justifyContent={medium ? "space-around" : "space-between"} alignItems="center">{
           !medium &&
           <Box color="var(--color)" bg="var(--top-button-bg)" p=".6em" ml="1em"><FontAwesomeIcon icon="fa-camera" style={{ marginRight: ".5em" }} />PhotoShopper</Box>
