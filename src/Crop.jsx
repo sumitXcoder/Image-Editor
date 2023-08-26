@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import { Box, Button } from "@chakra-ui/react"
-import { myCanvas, dataURL, canvasRef, MyContext, wrapperRef,panelStyle,DPR } from "./App"
+import { myCanvas, dataURL, canvasRef, MyContext, wrapperRef, panelStyle, DPR } from "./App"
 
 var parent, canvas
 const CropBox = ({ currentTab, imageCropped }) => {
@@ -11,22 +11,20 @@ const CropBox = ({ currentTab, imageCropped }) => {
     parent = useRef(null)
     useEffect(() => {
         if (myCanvas.current) {
-            if (currentTab) {
-                canvas.width = myCanvas.current.width
-                canvas.height = myCanvas.current.height
-                canvas.left = myCanvas.current._offset.left
-                canvas.top = myCanvas.current._offset.top
-                parent.current.style.left = canvas.left + "px"
-                parent.current.style.top = canvas.top + "px"
-                parent.current.style.width = canvas.width + "px"
-                parent.current.style.height = canvas.height + "px"
+            canvas.width = myCanvas.current.width
+            canvas.height = myCanvas.current.height
+            canvas.left = myCanvas.current._offset.left
+            canvas.top = myCanvas.current._offset.top
+            parent.current.style.left = canvas.left + "px"
+            parent.current.style.top = canvas.top + "px"
+            parent.current.style.width = canvas.width + "px"
+            parent.current.style.height = canvas.height + "px"
+            wrapperRef.current.style.zIndex = "15"
+            if (currentTab === 14)
                 wrapperRef.current.style.zIndex = "0"
-            } else {
-                wrapperRef.current.style.zIndex = "15"
-            }
         }
 
-    }, [dataURL.current, currentTab, imageCropped])
+    }, [dataURL.current, currentTab, imageCropped,])
     const Control = ({ props }) => {
         return (
             <Box style={{ ...controlStyle, ...props.style }} onMouseDown={e => resizeMouseDown(e)}>{props.index}</Box>
@@ -39,12 +37,12 @@ const CropBox = ({ currentTab, imageCropped }) => {
         pos[2] = e.clientX
         pos[3] = e.clientY
         window.onmousemove = dragMouseMove
-        window.ontouchmove=dragMouseMove
+        window.ontouchmove = dragMouseMove
         window.onmouseup = () => {
             window.onmousemove = null
-            window.ontouchmove=null
+            window.ontouchmove = null
             window.onmouseup = null
-            window.ontouchend=null
+            window.ontouchend = null
         }
     }
     const dragMouseMove = e => {
@@ -83,9 +81,9 @@ const CropBox = ({ currentTab, imageCropped }) => {
             parent.current.style.height = gapTop + resize.height - (gapTop + resize.height - canvas.height) + "px"
         }
         window.onmousemove = null
-        window.ontouchmove=null
+        window.ontouchmove = null
         window.onmouseup = null
-        window.ontouchend=null
+        window.ontouchend = null
     }
     const controlStyle = {
         fontSize: ".8em",
@@ -116,10 +114,10 @@ const CropBox = ({ currentTab, imageCropped }) => {
         e.stopPropagation()
         const p = parent.current
         var width, height
-        gap.left = parseInt(parent.current.style.left.replace('px', '')) - canvas.left
-        gap.right = canvas.width - parseInt(parent.current.style.width.replace('px', '')) - gap.left
-        gap.top = parseInt(parent.current.style.top.replace('px', '')) - canvas.top
-        gap.bottom = canvas.height - parseInt(parent.current.style.height.replace('px', '')) - gap.top
+        gap.left = parseInt(p.style.left.replace('px', '')) - canvas.left
+        gap.right = canvas.width - parseInt(p.style.width.replace('px', '')) - gap.left
+        gap.top = parseInt(p.style.top.replace('px', '')) - canvas.top
+        gap.bottom = canvas.height - parseInt(p.style.height.replace('px', '')) - gap.top
         switch (resize.target) {
             case "0":
                 width = resize.width - (e.pageX - resize.mouseX)
@@ -230,9 +228,9 @@ const CropBox = ({ currentTab, imageCropped }) => {
 
     return (
         <Box ref={parent} position="absolute" width="75px" height="60px"
-        cursor="move" onMouseDown={e => dragMouseDown(e)} onTouchStart={e=>dragMouseDown(e)}
-        outline="1px solid white" bg="#FFFFFF30" zIndex="10">
-                {console.log("rendered crop box")}
+            cursor="move" onMouseDown={e => dragMouseDown(e)} onTouchStart={e => dragMouseDown(e)}
+            outline="1px solid white" bg="#FFFFFF30" zIndex="10">
+            {console.log("rendered crop box",parent.current?.style.top)}
             <Control props={{ index: 0, style: { left: "-1em", top: "-1em", clipPath: "polygon(0% 0%, 100% 0%,100% 35%,35% 35%,35% 100%,0% 100%)", cursor: "nwse-resize" } }} />
             <Control props={{ index: 4, style: { left: "50%", top: "-1em", transform: "translateX(-50%)", height: ".75em", cursor: "ns-resize" } }} />
             <Control props={{ index: 1, style: { right: "-1em", top: "-1em", clipPath: "polygon(0% 0%, 100% 0%, 100% 100%,70% 100%,70% 30%,0% 30%)", cursor: "nesw-resize" } }} />
@@ -250,21 +248,21 @@ export default function Crop() {
     const { imgProps, setImgProps, currentTab, addToHistory, setCanvasProps, eventFlag } = useContext(MyContext)
 
     const onApply = () => {
-        var crop = {}
+        let crop = {}
         for (let prop of ["width", "height", "left", "top"])
             crop[prop] = parseInt(parent.current.style[prop].replace('px', ''))
         const tempCanvasObjects = []
         while (myCanvas.current._objects.length > 1)
             tempCanvasObjects.push(myCanvas.current._objects.pop())
-        myCanvas.current.renderAll()    
+        myCanvas.current.renderAll()
         const ctx = myCanvas.current.getContext("2d", { willReadFrequently: true })
-        const topGap=crop.top - myCanvas.current._offset.top
-        const leftGap=crop.left - myCanvas.current._offset.left
+        const topGap = crop.top - myCanvas.current._offset.top
+        const leftGap = crop.left - myCanvas.current._offset.left
         const data = ctx.getImageData((crop.left - myCanvas.current._offset.left) * DPR, (crop.top - myCanvas.current._offset.top) * DPR, crop.width * DPR, crop.height * DPR)
         eventFlag.current = false
-        for (let obj of tempCanvasObjects){
-            obj.left-=leftGap
-            obj.top-=topGap
+        for (let obj of tempCanvasObjects) {
+            obj.left -= leftGap
+            obj.top -= topGap
             myCanvas.current.add(obj)
         }
         eventFlag.current = true
@@ -298,9 +296,10 @@ export default function Crop() {
     }
     return (
         <>
-            <CropBox currentTab={currentTab} imageCropped={imageCropped}/>
+            <CropBox currentTab={currentTab} imageCropped={imageCropped} />
             <Box w="max-content" sx={panelStyle}>
-                <Button onClick={onApply} bg="var(--input-bg)" border="1px solid var(--outline-color)" letterSpacing={1} color="var(--color)" _hover={{ bg: "#999" }}>Apply</Button>
+                <Button onClick={onApply} bg="var(--input-bg)" border="1px solid var(--outline-color)" letterSpacing={1} color="var(--color)" _hover={{ bg: "#999" }} marginBottom=".4em">Apply
+                </Button>
             </Box>
         </>
     )

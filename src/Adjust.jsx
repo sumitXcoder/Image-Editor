@@ -2,29 +2,43 @@ import React, { useContext } from "react"
 import { Box, Text, Slider, Flex } from "@chakra-ui/react"
 import { MyContext, panelStyle, SliderContent } from './App'
 
+const styles={
+  large:{
+    width:"15em",
+    flexFlow:"column"
+  },
+  medium:{
+    fontSize:".5em",
+    width:"auto",
+    flexFlow:"row",
+    columnGap:"1em",
+    padding:".25em .5em"
+  }
+}
 export const Property = ({ prop, value }) => {
+  const { medium } = useContext(MyContext)
   return (
-    <Flex justifyContent="space-between" fontSize="clamp(14px,2vw,1em)">
-      <Text fontWeight="400" letterSpacing="1px" fontSize="1em">{prop.replace(prop[0], prop[0].toUpperCase())}</Text>
-      <Box fontSize={14} border="1px solid var(--outline-color-low)" padding="0px 5px" borderRadius=".25em">{value}
+    <Flex justifyContent="space-between" fontSize="clamp(14px,2vw,1em)" width={medium ? "150px" : "100%"}>
+      <Text fontWeight="300" letterSpacing="1px" fontSize="1em">{prop.replace(prop[0], prop[0].toUpperCase())}</Text>
+      <Box border="1px solid var(--outline-color-low)" padding="0px 5px" borderRadius=".25em">{value}
       </Box>
     </Flex>
   )
 }
 export default function Adjust() {
-  const { filters, setFilters, filterValue, addToHistory } = useContext(MyContext)
+  const { filters, setFilters, filterValue, addToHistory, medium } = useContext(MyContext)
   return (
-    <Box w="15em" sx={panelStyle} >{
+    <Flex sx={medium?{...panelStyle,...styles.medium}:{...panelStyle,...styles.large}} overflowX="auto">{
       ["brightness", "contrast", "saturation", "rotation"].map(filter => {
         return (
-          <React.Fragment key={filter}>
+          <Box key={filter}>
             <Property prop={filter} value={filterValue(filters[filter])} />
             <Slider defaultValue={0} min={-100} max={100} onChange={value => setFilters({ ...filters, [filter]: value / 100 })} onChangeEnd={value => addToHistory(null, { [filter]: value / 100 }, null, null)}>
               <SliderContent />
             </Slider>
-          </React.Fragment>
+          </Box >
         )
       })}
-    </Box>
+    </Flex>
   )
 }

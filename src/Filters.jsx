@@ -60,22 +60,24 @@ export const Noise = () => {
 }
 
 export const RemoveColor = () => {
-    const { filters, setFilters, addToHistory } = useContext(MyContext)
+    const { filters, setFilters, addToHistory, medium } = useContext(MyContext)
     return (
-        <Box w="15em" sx={panelStyle}>
-            <Property prop="removeColor" value={filters.hasOwnProperty("removeColor") && filters.removeColor.hasOwnProperty("distance") ? Math.round(filters.removeColor.distance * 100) : 0} />
-            <Slider defaultValue={0} min={0} max={100} onChange={value => setFilters({ ...filters, removeColor: { distance: value / 100 } })} onChangeEnd={value => addToHistory(null, { removeColor: { distance: value / 100 } }, null, null)}>
-                <SliderContent />
-            </Slider>
-            <FormLabel>Color
+        <Grid w="15em" sx={panelStyle} overflowX="auto" gap=".5em 1em" gridAutoFlow={medium?"column":"row"} scrollSnapType="x mandatory">
+            <Box width="13.5em" scrollSnapAlign="center">
+                <Property prop="removeColor" value={filters.hasOwnProperty("removeColor") && filters.removeColor.hasOwnProperty("distance") ? Math.round(filters.removeColor.distance * 100) : 0} />
+                <Slider defaultValue={0} min={0} max={100} onChange={value => setFilters({ ...filters, removeColor: { distance: value / 100 } })} onChangeEnd={value => addToHistory(null, { removeColor: { distance: value / 100 } }, null, null)}>
+                    <SliderContent />
+                </Slider>
+            </Box>
+            <FormLabel width="10em" scrollSnapAlign="center">Color
                 <Input type="color" size="2em" width="2em" height="2em" border="1px solid var(--outline-color)" position="relative" top=".4em" left="1em" onChange={color => setFilters({ ...filters, removeColor: { color: color.target.value } })} />
             </FormLabel>
-        </Box>
+        </Grid>
     )
 }
 
 export const Gamma = () => {
-    const { filters, setFilters, addToHistory } = useContext(MyContext)
+    const { filters, setFilters, addToHistory, medium } = useContext(MyContext)
 
     const gammaValue = (index, value, end = false) => {
         const values = { ...filters }
@@ -83,20 +85,25 @@ export const Gamma = () => {
         end ? addToHistory(null, { Gamma: { gamma: [...values.Gamma.gamma] } }, null, null) : setFilters(values)
     }
     return (
-        <Box w="15em" sx={panelStyle}>
-            <Property prop="Red" value={filters.hasOwnProperty("Gamma") ? (filters.Gamma.gamma[0]).toPrecision(3) : "1.00"} />
-            <Slider defaultValue={1.00} min={0} max={10} step={0.01} onChange={value => gammaValue(0, value)} onChangeEnd={value => gammaValue(0, value, true)}>
-                <SliderContent />
-            </Slider>
-            <Property prop="Green" value={filters.hasOwnProperty("Gamma") ? (filters.Gamma.gamma[1]).toPrecision(3) : "1.00"} />
-            <Slider defaultValue={1.00} min={0} max={10} step={0.01} onChange={value => gammaValue(1, value)} onChangeEnd={value => gammaValue(1, value, true)}>
-                <SliderContent />
-            </Slider>
-            <Property prop="Blue" value={filters.hasOwnProperty("Gamma") ? (filters.Gamma.gamma[2]).toPrecision(3) : "1.00"} />
-            <Slider defaultValue={1.00} min={0} max={10} step={0.01} onChange={value => gammaValue(2, value)} onChangeEnd={value => gammaValue(2, value, true)}>
-                <SliderContent />
-            </Slider>
-        </Box>
+        <Flex sx={medium ? { ...panelStyle, width: "auto", overflowX: "auto", columnGap: ".5em" } : { ...panelStyle, flexFlow: "column", width: "15em" }}>
+            <Box>
+                <Property prop="Red" value={filters.hasOwnProperty("Gamma") ? (filters.Gamma.gamma[0]).toPrecision(3) : "1.00"} />
+                <Slider defaultValue={1.00} min={0} max={10} step={0.01} onChange={value => gammaValue(0, value)} onChangeEnd={value => gammaValue(0, value, true)}>
+                    <SliderContent />
+                </Slider>
+            </Box>
+            <Box>
+                <Property prop="Green" value={filters.hasOwnProperty("Gamma") ? (filters.Gamma.gamma[1]).toPrecision(3) : "1.00"} />
+                <Slider defaultValue={1.00} min={0} max={10} step={0.01} onChange={value => gammaValue(1, value)} onChangeEnd={value => gammaValue(1, value, true)}>
+                    <SliderContent />
+                </Slider></Box>
+            <Box>
+                <Property prop="Blue" value={filters.hasOwnProperty("Gamma") ? (filters.Gamma.gamma[2]).toPrecision(3) : "1.00"} />
+                <Slider defaultValue={1.00} min={0} max={10} step={0.01} onChange={value => gammaValue(2, value)} onChangeEnd={value => gammaValue(2, value, true)}>
+                    <SliderContent />
+                </Slider>
+            </Box>
+        </Flex>
     )
 }
 
@@ -130,7 +137,7 @@ export const Convolute = () => {
 }
 
 export const Rotate = () => {
-    const { imgProps, setImgProps, addToHistory } = useContext(MyContext)
+    const { imgProps, setImgProps, addToHistory,medium } = useContext(MyContext)
     const angle = useRef(0)
     const updateImgProps = (prop, value) => {
         if (prop === "rotate") {
@@ -154,36 +161,50 @@ export const Rotate = () => {
     }
     return (
         <>
-            <Box w="15em" sx={panelStyle}>
-                <Flex justifyContent="space-between" >
-                    <Text fontWeight="400" letterSpacing="1px" fontSize={15}>Rotation</Text>
-                    <Box fontSize={14} border="1px solid var(--outline-color-low)" padding="0px 5px" borderRadius=".25em">{angle.current > 0 ? "+" + angle.current : angle.current}°</Box>
-                </Flex>
-
-                <Slider defaultValue={0} min={-180} max={180} onChange={e => updateImgProps("rotate", e)} onChangeEnd={(value) => addToHistory(null, null, { rotate: value }, null)
-                }>
-                    <SliderContent />
-                </Slider>
-                <Flex justifyContent="space-between" mt=".5em" alignItems="center">Rotate
+            <Grid w="15em" sx={panelStyle} gridAutoFlow={medium?"column":"row" }overflowX="auto" gap=".5em 1em" scrollSnapType="x mandatory">
+                <Box width="13.5em" scrollSnapAlign="center">
+                    <Flex justifyContent="space-between">
+                        <Text fontWeight="400" letterSpacing="1px" fontSize={15}>Rotation</Text>
+                        <Box fontSize={14} border="1px solid var(--outline-color-low)" padding="0px 5px" borderRadius=".25em">{angle.current > 0 ? "+" + angle.current : angle.current}°</Box>
+                    </Flex>
+                    <Slider defaultValue={0} min={-180} max={180} onChange={e => updateImgProps("rotate", e)} onChangeEnd={(value) => addToHistory(null, null, { rotate: value }, null)
+                    }>
+                        <SliderContent />
+                    </Slider>
+                </Box>
+                <Flex justifyContent="space-between" alignItems="center" width="13.5em" scrollSnapAlign="center">
+                    Rotate
                     <HStack>
-                        <Button w="2.5em" onClick={e => updateImgProps("rotate90", -90)} bg="var(--top-button-bg)" color="var(--color)" outline="1px solid var(--outline-color-low)" _hover={{ outlineColor: "var(--outline-color)" }} >-90°</Button>
-                        <Button w="2.5em" onClick={e => updateImgProps("rotate90", 90)} bg="var(--top-button-bg)" color="var(--color)" outline="1px solid var(--outline-color-low)" _hover={{ outlineColor: "var(--outline-color)" }} >90°</Button>
+                        <Button size="" p="7px" onClick={e => updateImgProps("rotate90", -90)} bg="var(--top-button-bg)" color="var(--color)" outline="1px solid var(--outline-color-low)" _hover={{ outlineColor: "var(--outline-color)" }} > -90°</Button>
+                        <Button size="" p="7px" onClick={e => updateImgProps("rotate90", 90)} bg="var(--top-button-bg)" color="var(--color)" outline="1px solid var(--outline-color-low)" _hover={{ outlineColor: "var(--outline-color)" }} > 90°</Button>
                     </HStack>
                 </Flex>
-                <Flex justifyContent="space-between" mt=".5em" alignItems="center">Flip
+                <Flex justifyContent="space-between" alignItems="center" width="13.5em" scrollSnapAlign="center">Flip
                     <HStack spacing=".5em">
-                        <MyCheckbox w="2.5em" value="flipX" onChange={e => updateImgProps("flipX", e.target.checked)} />
-                        <MyCheckbox w="2.5em" value="flipY" onChange={e => updateImgProps("flipY", e.target.checked)} />
+                        <MyCheckbox w="2.75em" value="flipX" onChange={e => updateImgProps("flipX", e.target.checked)} />
+                        <MyCheckbox w="2.75em" value="flipY" onChange={e => updateImgProps("flipY", e.target.checked)} />
                     </HStack>
                 </Flex>
-            </Box>
+            </Grid>
         </>
     )
 }
-
+const imageFilterStyle = {
+    large: {
+        gridTemplateColumns: "auto",
+        width: "10em",
+        gap: ".5em"
+    },
+    medium: {
+        gridTemplateColumns: "repeat(9,1fr)",
+        width: "auto",
+        overflowX: "auto",
+        gap: ".5em"
+    }
+}
 export const ImageFilters = () => {
     const fabricImageFilters = ["Brownie", "Sepia", "Vintage", "Technicolor", "Polaroid", "Kodachrome", "BlackWhite", "Grayscale", "Invert"]
-    const { filters, setFilters, addToHistory } = useContext(MyContext)
+    const { filters, setFilters, addToHistory, medium } = useContext(MyContext)
 
     const updateFilters = (e) => {
         let imgFilter = {}
@@ -199,7 +220,7 @@ export const ImageFilters = () => {
         }
     }
     return (
-        <Grid w="max-content" sx={panelStyle} gridTemplateColumns="repeat(3,1fr)" gap=".5em">{fabricImageFilters.map(filter => {
+        <Grid sx={medium ? { ...panelStyle, ...imageFilterStyle.medium } : { ...panelStyle, ...imageFilterStyle.large }}>{fabricImageFilters.map(filter => {
             return <MyCheckbox key={filter} value={filter} onChange={e => updateFilters(e)} />
         })}</Grid>
     )

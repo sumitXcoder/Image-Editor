@@ -15,7 +15,7 @@ export const DPR = window.devicePixelRatio || 1
 export const panelStyle = {
   backgroundColor: "var(--panel-bg)",
   color: "var(--color)",
-  padding: "1em",
+  padding: ".75em .75em .25em .75em",
   backdropFilter: "blur(10px)",
   outline: "1px solid rgba(255,255,255,.4)",
   borderRadius: ".5em",
@@ -27,7 +27,7 @@ export const SliderContent = () => {
       <SliderTrack bg="var(--slider-track-color)" h="3px">
         <SliderFilledTrack bg="var(--slider-filled-track-color)" />
       </SliderTrack>
-      <SliderThumb border="2px solid var(--slider-thumb-border-color)" bg="var(--slider-thumb-color)" width="1em" height="1em" />
+      <SliderThumb border="2px solid var(--slider-thumb-border-color)" bg="var(--slider-thumb-color)" width="max(12px,1em)" height="max(12px,1em)" />
     </>
   )
 }
@@ -57,7 +57,7 @@ const sideBar = {
     backdropFilter: "blur(10px)",
     overflow: "auto",
     boxShadow: "0 0 5px 0 rgba(10,10,10,.25)",
-    position: "relative",
+    // position: "relative",
 
   },
   hover: {
@@ -68,12 +68,12 @@ const sideBar = {
   },
   vertical: {
     width: "3.25em",
-    height: "90vh",
+    height: "min(650px,90vh)",
     overflow: "hidden auto"
   },
   horizontal: {
     overflow: "auto hidden",
-    borderRadius: ".1em"
+    borderRadius: ".1em",
   }
 }
 
@@ -81,7 +81,6 @@ const tabStyles = {
   sx: {
     color: "var(--color)",
     justifyContent: "flex-start",
-    paddingBlock: ".7em",
   },
   selected: {
     boxShadow: "0 0 1px 1px lightblue",
@@ -89,7 +88,7 @@ const tabStyles = {
     borderRadius: ".25em"
   },
   hover: {
-    transform: "scale(1.1)",
+    transform: "scale(1.08)",
     boxShadow: "0 0 5px 0 rgba(25,25,25,.25)",
   }
 
@@ -121,8 +120,11 @@ export default function App({ theme, setTheme }) {
 
   const readImage = e => {
     e.stopPropagation()
-    var AVAILABLE_WIDTH = window.innerWidth - 400
-    var AVAILABLE_HEIGHT = window.innerHeight - 150
+    let AVAILABLE_WIDTH = window.innerWidth - 10
+    let AVAILABLE_HEIGHT = window.innerHeight - 150
+    if (medium)
+      AVAILABLE_HEIGHT -= 125
+
     file = e.target.files[0]
     if (file) {
       if (myCanvas.current)
@@ -132,16 +134,17 @@ export default function App({ theme, setTheme }) {
         dataURL.current = reader.result
         fabric.Image.fromURL(dataURL.current, function (img) {
           const scaleFactor = img.width / img.height
-          console.log(scaleFactor, AVAILABLE_WIDTH, AVAILABLE_HEIGHT)
-          // AVAILABLE_WIDTH > AVAILABLE_HEIGHT ? AVAILABLE_WIDTH /= scaleFactor : AVAILABLE_HEIGHT *= scaleFactor
-          console.log(scaleFactor, AVAILABLE_WIDTH, AVAILABLE_HEIGHT)
-          if (img.width > AVAILABLE_WIDTH)
+          if (AVAILABLE_WIDTH - 400 > img.width && !medium)
+            AVAILABLE_WIDTH -= 400
+          // if (medium)
+          //   img.width > img.height ? AVAILABLE_WIDTH /= scaleFactor : AVAILABLE_HEIGHT *= scaleFactor
+          if (img.width * img.scaleX > AVAILABLE_WIDTH)
             img.scaleToWidth(AVAILABLE_WIDTH)
-          if (img.height > AVAILABLE_HEIGHT)
+          if (img.height * img.scaleY > AVAILABLE_HEIGHT)
             img.scaleToHeight(AVAILABLE_HEIGHT)
+
           const width = img.width * img.scaleX
           const height = img.height * img.scaleY
-          console.log(width, height, img.scaleX, img.scaleY)
           myCanvas.current = new fabric.Canvas(canvasRef.current, {
             width: width,
             height: height
@@ -184,14 +187,13 @@ export default function App({ theme, setTheme }) {
   useEffect(() => {
     if (dataURL.current) {
       fabric.Image.fromURL(dataURL.current, function (img) {
-        const imgFilter = fabric.Image.filters
         for (let key in filters) {
           if (filters[key] === "imageFilter") {
-            img.filters.push(new imgFilter[key]())
+            img.filters.push(new fabric.Image.filters[key]())
           } else {
             let filter = {}
             typeof filters[key] === "object" ? filter = filters[key] : filter[key] = filters[key]
-            img.filters.push(new imgFilter[toFilterClass(key)](filter))
+            img.filters.push(new fabric.Image.filters[toFilterClass(key)](filter))
           }
         }
         for (let prop in imgProps) {
@@ -267,39 +269,44 @@ export default function App({ theme, setTheme }) {
   }
 
   return (
-    <MyContext.Provider value={{ filters, setFilters, filterValue, imgProps, setImgProps, currentTab, addToHistory, canvasProps, setCanvasProps, eventFlag }}>
+    <MyContext.Provider value={{ filters, setFilters, filterValue, imgProps, setImgProps, currentTab, addToHistory, canvasProps, setCanvasProps, eventFlag, medium }}>
       <Box bg="var(--bg)" h="100dvh" w="100%" overflow="hidden" position="relative" margin="0" fontSize="clamp(12px,2vw,1em)">
-        <Flex bg="var(--top-bg)" paddingBlock=".3em" borderBottom="1px solid #666" justifyContent={medium ? "space-around" : "space-between"} alignItems="center">{
+        <Flex bg="var(--top-bg)" borderBottom="1px solid #666" justifyContent={medium ? "space-around" : "space-between"} alignItems="center" height="3.25em">{
           !medium &&
           <Box color="var(--color)" bg="var(--top-button-bg)" p=".6em" ml="1em"><FontAwesomeIcon icon="fa-camera" style={{ marginRight: ".5em" }} />PhotoShopper</Box>
         }
           {medium &&
             <>
               <FullScreen isMedium={medium} />
-              {/* <Zoom /> */}
               <HStack >
-                <Button border="1px solid var(--outline-color-low)" borderRadius=".25em" bg="var(--top-button-bg)" color="var(--color)" p="0" _hover={{ borderColor: "var(--outline-color)" }} onClick={undo}><FontAwesomeIcon icon="fa-rotate-left" /></Button>
-                <Button border="1px solid var(--outline-color-low)" borderRadius=".25em" bg="var(--top-button-bg)" color="var(--color)" p="0" _hover={{ borderColor: "var(--outline-color)" }} onClick={redo}><FontAwesomeIcon icon="fa-rotate-right" /></Button>
+                <Button size={medium ? "sm" : "md"} border="1px solid var(--outline-color-low)" borderRadius=".25em" bg="var(--top-button-bg)" color="var(--color)" aspectRatio="1/1" _hover={{ borderColor: "var(--outline-color)" }} onClick={undo}>
+                  <FontAwesomeIcon icon="fa-rotate-left" />
+                </Button>
+                <Button size={medium ? "sm" : "md"} border="1px solid var(--outline-color-low)" borderRadius=".25em" bg="var(--top-button-bg)" color="var(--color)" aspectRatio="1/1" paddingBlock="2px" _hover={{ borderColor: "var(--outline-color)" }} onClick={redo}>
+                  <FontAwesomeIcon icon="fa-rotate-right" />
+                </Button>
               </HStack>
             </>}
           <HStack >
-            <FormLabel w="max-content" bg="var(--top-button-bg)" p=".5em" position="relative" top=".25em" borderRadius=".25em" textAlign="center" color="var(--color)" _hover={{ outline: "1px solid var(--top-button-hover)", cursor: "pointer" }}><FontAwesomeIcon icon="fa-folder-open" style={{ marginRight: medium ? "0" : ".5em" }} />{medium ? "" : "Open"}
-              <Input type="file" display="none" accept=".png ,.jpg, .jpeg" onChange={e => readImage(e)} /></FormLabel>
-            <Button onClick={e => Save(e)} w={medium ? "1em" : "max-content"} bg="var(--top-button-bg)" color="var(--color)" _hover={{ outline: "1px solid var(--top-button-hover)" }}><FontAwesomeIcon icon="fa-download" style={{ marginRight: medium ? "0" : ".5em" }} />{medium ? "" : "Save"}</Button>
+            <FormLabel w="max-content" bg="var(--top-button-bg)" p={medium ? ".25em .5em" : ".5em"} position="relative" top=".25em" borderRadius=".25em" textAlign="center" color="var(--color)" _hover={{ outline: "1px solid var(--top-button-hover)", cursor: "pointer" }}>
+              <FontAwesomeIcon icon="fa-folder-open" style={{ marginRight: medium ? "0" : ".5em" }} />{medium ? "" : "Open"}
+              <Input type="file" display="none" accept=".png ,.jpg, .jpeg" onChange={e => readImage(e)} />
+            </FormLabel>
+            <Button size={medium ? "sm" : "md"} onClick={e => Save(e)} w={medium ? "1em" : "max-content"} bg="var(--top-button-bg)" color="var(--color)" _hover={{ outline: "1px solid var(--top-button-hover)" }}><FontAwesomeIcon icon="fa-download" style={{ marginRight: medium ? "0" : ".5em" }} />{medium ? "" : "Save"}</Button>
           </HStack>
-          <Button color="var(--top-button-bg)" mr="1em" bg="var(--top-button-bg)" onClick={() => setTheme(t => !t)} _hover={{ outline: "1px solid var(--top-button-hover)" }}><FontAwesomeIcon icon={theme ? "fa-moon" : "fa-sun"} style={{ fontSize: "1.2em", color: theme ? "white" : "#ac9a46" }} /></Button>
+          <Button size={medium ? "sm" : "md"} color="var(--top-button-bg)" mr="1em" bg="var(--top-button-bg)" onClick={() => setTheme(t => !t)} _hover={{ outline: "1px solid var(--top-button-hover)" }}><FontAwesomeIcon icon={theme ? "fa-moon" : "fa-sun"} style={{ fontSize: "1.2em", color: theme ? "white" : "#ac9a46" }} /></Button>
         </Flex>
-        <Box position="absolute" top="50%" left="60%" transform="translate(-50%,-50%)" p="0" zIndex="5" ref={wrapperRef} bg="var(--top-button-bg)" outline="1px dotted var(--color)">
+        <Box position="absolute" style={medium ? { top: "46%", left: "50%" } : { top: "50%", left: "60%" }} transform="translate(-50%,-50%)" p="0" zIndex="15" ref={wrapperRef} bg="var(--top-button-bg)" outline="1px dotted var(--color)">
           <canvas ref={canvasRef} style={{ zIndex: "0" }}></canvas>
         </Box>
-        <Tabs orientation={medium ? "horizontal" : "vertical"} onChange={e => setCurrentTab(e)} paddingLeft=".25em" w="100%">
-          <Box position="absolute" style={medium ? { bottom: "2px" } : {}} w="100%">
+        <Tabs orientation={medium ? "horizontal" : "vertical"} onChange={e => setCurrentTab(e)} w="100%" height="max-content" sx={medium ? {} : { position: "relative", top: "45%", transform: "translateY(-50%)" }}>
+          <Box position="relative" style={medium ? { bottom: "2px", width: "100%", marginTop: "2px" } : { width: "max-content", paddingLeft: ".25em" }} >
             <TabList style={medium ? { ...sideBar.sx, ...sideBar.horizontal } : { ...sideBar.sx, ...sideBar.vertical }} _hover={medium ? { ...sideBar.hover, width: "auto" } : sideBar.hover} >
               {tabs.map(tab => {
                 return (
                   <Tooltip label={tab[0]} placement={medium ? "top" : "right"} hasArrow bg="var(--top-bg)" boxShadow="0 0 5px 1px rgba(25,25,25,.25)"
                     padding=".5em" color="var(--color)">
-                    <Tab key={tab[0]} sx={tabStyles.sx} _selected={tabStyles.selected} _hover={tabStyles.hover}>
+                    <Tab key={tab[0]} sx={medium ? { ...tabStyles.sx, padding: "1em", fontSize: ".95em" } : { ...tabStyles.sx, paddingBlock: ".7em" }} _selected={tabStyles.selected} _hover={tabStyles.hover}>
                       <FontAwesomeIcon icon={"fa-" + tab[1]} style={{ fontSize: "1.25em" }} />
                     </Tab>
                   </Tooltip>
@@ -308,21 +315,21 @@ export default function App({ theme, setTheme }) {
             </TabList>
           </Box>
           <TabPanels >
-            <TabPanel ml="3em"  ><Adjust /></TabPanel>
-            <TabPanel ml="3em"  ><Markup /></TabPanel>
-            <TabPanel ml="3em"  mt="10vh"><Text /></TabPanel>
-            <TabPanel ml="3em"  mt="15vh"><Pixelate /></TabPanel>
-            <TabPanel ml="3em"  mt="20vh"><Blur /></TabPanel>
-            <TabPanel ml="3em"  mt="25vh"><Vibrance /></TabPanel>
-            <TabPanel ml="3em"  mt="30vh"><Noise /></TabPanel>
-            <TabPanel ml="3em"  mt="35vh"><RemoveColor /></TabPanel>
-            <TabPanel ml="3em"  mt="40vh"><Gamma /></TabPanel>
-            <TabPanel ml="3em"  mt="50vh"><Convolute /></TabPanel>
-            <TabPanel ml="3em"  mt="50vh"><Rotate /></TabPanel>
-            <TabPanel ml="3em"  mt="55vh"><ImageFilters /></TabPanel>
-            <TabPanel ml="3em"  mt="45vh"><Stickers /></TabPanel>
-            <TabPanel ml="3em"  mt="55vh"><Resize /></TabPanel>
-            <TabPanel ml="3em"  mt="55vh"><Crop /></TabPanel>
+            <TabPanel style={medium ? { position: "absolute", bottom: "0", maxWidth: "100%", padding: "0", paddingBottom: ".5em" } : {}}><Adjust /></TabPanel>
+            <TabPanel style={medium ? { position: "absolute", bottom: "0", maxWidth: "100%", paddingInline: ".25em", zIndex: "0" } : {}} ><Markup /></TabPanel>
+            <TabPanel style={medium ? { position: "absolute", bottom: "0" } : {}}><Text /></TabPanel>
+            <TabPanel style={medium ? { position: "absolute", bottom: "0" } : {}}><Pixelate /></TabPanel>
+            <TabPanel style={medium ? { position: "absolute", bottom: "0" } : {}}><Blur /></TabPanel>
+            <TabPanel style={medium ? { position: "absolute", bottom: "0" } : {}}><Vibrance /></TabPanel>
+            <TabPanel style={medium ? { position: "absolute", bottom: "0" } : {}}><Noise /></TabPanel>
+            <TabPanel style={medium ? { position: "absolute", bottom: "0" } : {}}><RemoveColor /></TabPanel>
+            <TabPanel style={medium ? { position: "absolute", bottom: "0", maxWidth: "100%" } : {}}><Gamma /></TabPanel>
+            <TabPanel style={medium ? { position: "absolute", bottom: "0" } : {}}><Convolute /></TabPanel>
+            <TabPanel style={medium ? { position: "absolute", bottom: "0" } : {}}><Rotate /></TabPanel>
+            <TabPanel style={medium ? { position: "absolute", bottom: "0", maxWidth: "100%" } : {}}><ImageFilters /></TabPanel>
+            <TabPanel style={medium ? { position: "absolute", bottom: "0" } : {}}><Stickers /></TabPanel>
+            <TabPanel style={medium ? { position: "absolute", bottom: "0" } : {}}><Resize /></TabPanel>
+            <TabPanel style={medium ? { zIndex: "20" } : {}}><Crop /></TabPanel>
           </TabPanels>
         </Tabs>
         {
@@ -350,8 +357,8 @@ const FullScreen = ({ isMedium }) => {
       document.exitFullscreen()
   }, [isFullScreen])
   return (
-    <Button fontSize=".75em" border="1px solid var(--outline-color-low)" borderRadius=".25em" bg="var(--top-button-bg)" color="var(--color)" p="0"
-      ml={isMedium ? ".1em" : "10em"} _hover={{ borderColor: "var(--outline-color)" }} onClick={() => setIsFullScreen(prev => !prev)}><FontAwesomeIcon icon={isFullScreen ? "fa-compress" : "fa-expand"} style={{ fontSize: "1rem" }} />
+    <Button size={isMedium ? "sm" : "md"} border="1px solid var(--outline-color-low)" borderRadius=".25em" bg="var(--top-button-bg)" color="var(--color)" p="0"
+      ml={isMedium ? ".1em" : "10em"} _hover={{ borderColor: "var(--outline-color)" }} onClick={() => setIsFullScreen(prev => !prev)}><FontAwesomeIcon icon={isFullScreen ? "fa-compress" : "fa-expand"} style={{ fontSize: "1em" }} />
     </Button>
   )
 }
@@ -387,7 +394,8 @@ const Zoom = () => {
           </Tooltip>
         </Slider>
         <Center color="var(--color)" width="1em" height="1em" p=".6em" border="1px solid var(--outline-color-low)"
-          fontSize="1.5em" borderRadius="50%">+</Center></HStack>
+          fontSize="1.5em" borderRadius="50%">+</Center>
+      </HStack>
     </Box>
   )
 }
