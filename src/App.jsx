@@ -33,7 +33,7 @@ export const SliderContent = () => {
 }
 
 
-export var myCanvas, dataURL, canvasRef, wrapperRef
+export var myCanvas, dataURL, canvasRef, wrapperRef, tabRef
 const reader = new FileReader()
 const filterClass = { blocksize: "Pixelate", rotation: "HueRotation" }
 var file = ""
@@ -57,8 +57,6 @@ const sideBar = {
     backdropFilter: "blur(10px)",
     overflow: "auto",
     boxShadow: "0 0 5px 0 rgba(10,10,10,.25)",
-    // position: "relative",
-
   },
   hover: {
     zIndex: "3",
@@ -106,26 +104,22 @@ export default function App({ theme, setTheme }) {
   myCanvas = useRef(null)
   dataURL = useRef(null)
   wrapperRef = useRef(null)
-  function eventListener() {
-    if (eventFlag.current)
-      addToHistory(null, null, null, [...myCanvas.current._objects])
-  }
-
-  //remove warnings
+  tabRef = useRef(0)
+  
   useEffect(() => {
     console.clear()
     setMedium(window.innerWidth < 960)
     window.onresize = () => setMedium(window.innerWidth < 960)
+    return () => window.onresize = null
   }, [])
 
   const readImage = e => {
     e.stopPropagation()
     let AVAILABLE_WIDTH = window.innerWidth - 10
     let AVAILABLE_HEIGHT = window.innerHeight - 150
+    file = e.target.files[0]
     if (medium)
       AVAILABLE_HEIGHT -= 125
-
-    file = e.target.files[0]
     if (file) {
       if (myCanvas.current)
         myCanvas.current.dispose()
@@ -133,16 +127,12 @@ export default function App({ theme, setTheme }) {
       reader.onload = () => {
         dataURL.current = reader.result
         fabric.Image.fromURL(dataURL.current, function (img) {
-          const scaleFactor = img.width / img.height
           if (AVAILABLE_WIDTH - 400 > img.width && !medium)
             AVAILABLE_WIDTH -= 400
-          // if (medium)
-          //   img.width > img.height ? AVAILABLE_WIDTH /= scaleFactor : AVAILABLE_HEIGHT *= scaleFactor
           if (img.width * img.scaleX > AVAILABLE_WIDTH)
             img.scaleToWidth(AVAILABLE_WIDTH)
           if (img.height * img.scaleY > AVAILABLE_HEIGHT)
             img.scaleToHeight(AVAILABLE_HEIGHT)
-
           const width = img.width * img.scaleX
           const height = img.height * img.scaleY
           myCanvas.current = new fabric.Canvas(canvasRef.current, {
@@ -156,9 +146,14 @@ export default function App({ theme, setTheme }) {
           setCanvasProps({ width: width, height: height })
           setImgProps({ scaleX: img.scaleX, scaleY: img.scaleY })
           h[0].push(new State({ width: width, height: height }, {}, { scaleX: img.scaleX, scaleY: img.scaleY }, { ...myCanvas.current._objects }))
-          myCanvas.current.on("object:added", eventListener)
-          // myCanvas.current.on("object:modified", eventListener)
-          myCanvas.current.on("object:removed", eventListener)
+          myCanvas.current.on("object:added", () => {
+            if (eventFlag.current)
+              addToHistory(null, null, null, [...myCanvas.current._objects])
+          })
+          myCanvas.current.on("object:removed", () => {
+            if (eventFlag.current)
+              addToHistory(null, null, null, [...myCanvas.current._objects])
+          })
         })
       }
     }
@@ -290,7 +285,7 @@ export default function App({ theme, setTheme }) {
           <HStack >
             <FormLabel w="max-content" bg="var(--top-button-bg)" p={medium ? ".25em .5em" : ".5em"} position="relative" top=".25em" borderRadius=".25em" textAlign="center" color="var(--color)" _hover={{ outline: "1px solid var(--top-button-hover)", cursor: "pointer" }}>
               <FontAwesomeIcon icon="fa-folder-open" style={{ marginRight: medium ? "0" : ".5em" }} />{medium ? "" : "Open"}
-              <Input type="file" display="none" accept=".png ,.jpg, .jpeg" onChange={e => readImage(e)} />
+              <Input type="file" display="none" accept=".png ,.jpg, .jpeg,.webp" onChange={e => readImage(e)} />
             </FormLabel>
             <Button size={medium ? "sm" : "md"} onClick={e => Save(e)} w={medium ? "1em" : "max-content"} bg="var(--top-button-bg)" color="var(--color)" _hover={{ outline: "1px solid var(--top-button-hover)" }}><FontAwesomeIcon icon="fa-download" style={{ marginRight: medium ? "0" : ".5em" }} />{medium ? "" : "Save"}</Button>
           </HStack>
@@ -299,7 +294,7 @@ export default function App({ theme, setTheme }) {
         <Box position="absolute" style={medium ? { top: "46%", left: "50%" } : { top: "50%", left: "60%" }} transform="translate(-50%,-50%)" p="0" zIndex="15" ref={wrapperRef} bg="var(--top-button-bg)" outline="1px dotted var(--color)">
           <canvas ref={canvasRef} style={{ zIndex: "0" }}></canvas>
         </Box>
-        <Tabs orientation={medium ? "horizontal" : "vertical"} onChange={e => setCurrentTab(e)} w="100%" height="max-content" sx={medium ? {} : { position: "relative", top: "45%", transform: "translateY(-50%)" }}>
+        <Tabs orientation={medium ? "horizontal" : "vertical"} onChange={e => setCurrentTab(e)} w="100%" height="max-content" style={medium ? {} : { position: "relative", top: "45%", transform: "translateY(-50%)" }} ref={tabRef}>
           <Box position="relative" style={medium ? { bottom: "2px", width: "100%", marginTop: "2px" } : { width: "max-content", paddingLeft: ".25em" }} >
             <TabList style={medium ? { ...sideBar.sx, ...sideBar.horizontal } : { ...sideBar.sx, ...sideBar.vertical }} _hover={medium ? { ...sideBar.hover, width: "auto" } : sideBar.hover} >
               {tabs.map(tab => {
