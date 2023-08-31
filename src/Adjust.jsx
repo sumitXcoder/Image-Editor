@@ -2,17 +2,17 @@ import React, { useContext } from "react"
 import { Box, Text, Slider, Flex } from "@chakra-ui/react"
 import { MyContext, panelStyle, SliderContent } from './App'
 
-const styles={
-  large:{
-    width:"15em",
-    flexFlow:"column"
+const styles = {
+  large: {
+    width: "15em",
+    flexFlow: "column"
   },
-  medium:{
-    fontSize:".5em",
-    width:"auto",
-    flexFlow:"row",
-    columnGap:"1em",
-    padding:".25em .5em"
+  medium: {
+    fontSize: ".5em",
+    width: "auto",
+    flexFlow: "row",
+    columnGap: "1em",
+    padding: ".25em .5em"
   }
 }
 export const Property = ({ prop, value }) => {
@@ -28,12 +28,15 @@ export const Property = ({ prop, value }) => {
 export default function Adjust() {
   const { filters, setFilters, filterValue, addToHistory, medium } = useContext(MyContext)
   return (
-    <Flex sx={medium?{...panelStyle,...styles.medium}:{...panelStyle,...styles.large}} overflowX="auto">{
+    <Flex sx={medium ? { ...panelStyle, ...styles.medium } : { ...panelStyle, ...styles.large }} overflowX="auto">{
       ["brightness", "contrast", "saturation", "rotation"].map(filter => {
         return (
           <Box key={filter}>
             <Property prop={filter} value={filterValue(filters[filter])} />
-            <Slider defaultValue={0} min={-100} max={100} onChange={value => setFilters({ ...filters, [filter]: value / 100 })} onChangeEnd={value => addToHistory(null, { [filter]: value / 100 }, null, null)}>
+            <Slider defaultValue={0} min={-100} max={100} onChangeEnd={value => {
+              setFilters({ ...filters, [filter]: value / 100 })
+              addToHistory(null, { [filter]: value / 100 }, null, null)
+            }}>
               <SliderContent />
             </Slider>
           </Box >

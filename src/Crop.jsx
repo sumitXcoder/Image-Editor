@@ -6,8 +6,8 @@ var parent, canvas
 const controlStyle = {
     fontSize: ".8em",
     position: "absolute",
-    width: "2em",
-    height: "2em",
+    width: "2.25em",
+    height: "2.25em",
     border: "1px solid black",
     backgroundColor: "orange",
     textAlign: "center",
@@ -234,7 +234,6 @@ const CropBox = ({ imageCropped }) => {
         <Box ref={parent} position="absolute" width="75px" height="60px"
             cursor="move" onMouseDown={e => dragMouseDown(e)} onTouchStart={e => dragMouseDown(e)}
             outline="1px solid white" bg="#FFFFFF30" zIndex="10">
-            {console.log("rendered crop box", parent.current?.style.top)}
             <Control props={{ index: 0, style: { left: "-1em", top: "-1em", clipPath: "polygon(0% 0%, 100% 0%,100% 35%,35% 35%,35% 100%,0% 100%)", cursor: "nwse-resize" } }} />
             <Control props={{ index: 4, style: { left: "50%", top: "-1em", transform: "translateX(-50%)", height: ".75em", cursor: "ns-resize" } }} />
             <Control props={{ index: 1, style: { right: "-1em", top: "-1em", clipPath: "polygon(0% 0%, 100% 0%, 100% 100%,70% 100%,70% 30%,0% 30%)", cursor: "nesw-resize" } }} />
@@ -259,7 +258,7 @@ export default function Crop() {
         while (myCanvas.current._objects.length > 1)
             tempCanvasObjects.push(myCanvas.current._objects.pop())
         myCanvas.current.renderAll()
-        const ctx = myCanvas.current.getContext("2d")
+        const ctx = myCanvas.current.getContext("webgl",{preserverDrawingBuffer:true})
         let offsetTop = myCanvas.current._offset.top
         if (!medium)
             offsetTop -= tabRef.current.getBoundingClientRect().top

@@ -1,8 +1,9 @@
-import { useContext, useRef } from "react"
+import { useContext, useRef,useCallback } from "react"
 import { MyContext, panelStyle, SliderContent } from "./App"
 import { Box, Text, Button, Slider, Flex, FormLabel, Input, Select, Grid, HStack, useCheckbox, chakra } from "@chakra-ui/react"
 import { BsFillCaretDownFill } from 'react-icons/bs';
 import { Property } from "./Adjust"
+
 export const MyCheckbox = (props) => {
     const { state, getInputProps, getLabelProps, htmlProps } = useCheckbox(props)
     return (
@@ -17,7 +18,10 @@ export const Pixelate = () => {
     return (
         <Box w="15em" sx={panelStyle}>
             <Property prop="blocksize" value={filters.blocksize || 1} />
-            <Slider defaultValue={1} min={1} max={100} onChange={value => setFilters({ ...filters, blocksize: value })} onChangeEnd={value => addToHistory(null, { blocksize: value }, null, null)}><SliderContent />
+            <Slider defaultValue={1} min={1} max={100} onChangeEnd={value => {
+                setFilters({ ...filters, blocksize: value })
+                addToHistory(null, { blocksize: value }, null, null)
+            }}><SliderContent />
             </Slider>
         </Box>
     )
@@ -28,7 +32,10 @@ export const Blur = () => {
     return (
         <Box w="15em" sx={panelStyle}>
             <Property prop="blur" value={filterValue(filters.blur)} />
-            <Slider defaultValue={0} min={0} max={100} onChange={value => setFilters({ ...filters, blur: value / 100 })} onChangeEnd={value => addToHistory(null, { blur: value / 100 }, null, null)}>
+            <Slider defaultValue={0} min={0} max={100} onChangeEnd={value => {
+                setFilters({ ...filters, blur: value / 100 })
+                addToHistory(null, { blur: value / 100 }, null, null)
+            }}>
                 <SliderContent />
             </Slider>
         </Box>
@@ -40,7 +47,11 @@ export const Vibrance = () => {
     return (
         <Box w="15em" sx={panelStyle}>
             <Property prop="vibrance" value={filterValue(filters.vibrance)} />
-            <Slider defaultValue={0} min={-200} max={200} onChange={value => setFilters({ ...filters, vibrance: value / 100 })} onChangeEnd={value => addToHistory(null, { vibrance: value / 100 }, null, null)}>
+            <Slider defaultValue={0} min={-200} max={200} onChange={value => setFilters({ ...filters, vibrance: value / 100 })} onChangeEnd={value => {
+                setFilters({ ...filters, vibrance: value / 100 })
+                addToHistory(null, { vibrance: value / 100 }, null, null)
+            }
+            }>
                 <SliderContent />
             </Slider>
         </Box>
@@ -52,7 +63,10 @@ export const Noise = () => {
     return (
         <Box w="15em" sx={panelStyle}>
             <Property prop="noise" value={filters.noise || 0} />
-            <Slider defaultValue={0} min={0} max={200} onChange={value => setFilters({ ...filters, noise: value })} onChangeEnd={value => addToHistory(null, { noise: value }, null, null)}>
+            <Slider defaultValue={0} min={0} max={200} onChangeEnd={value => {
+                setFilters({ ...filters, noise: value })
+                addToHistory(null, { noise: value }, null, null)
+            }}>
                 <SliderContent />
             </Slider>
         </Box>
@@ -62,10 +76,13 @@ export const Noise = () => {
 export const RemoveColor = () => {
     const { filters, setFilters, addToHistory, medium } = useContext(MyContext)
     return (
-        <Grid w="15em" sx={panelStyle} overflowX="auto" gap=".5em 1em" gridAutoFlow={medium?"column":"row"} scrollSnapType="x mandatory">
+        <Grid w="15em" sx={panelStyle} overflowX="auto" gap=".5em 1em" gridAutoFlow={medium ? "column" : "row"} scrollSnapType="x mandatory">
             <Box width="13.5em" scrollSnapAlign="center">
                 <Property prop="removeColor" value={filters.hasOwnProperty("removeColor") && filters.removeColor.hasOwnProperty("distance") ? Math.round(filters.removeColor.distance * 100) : 0} />
-                <Slider defaultValue={0} min={0} max={100} onChange={value => setFilters({ ...filters, removeColor: { distance: value / 100 } })} onChangeEnd={value => addToHistory(null, { removeColor: { distance: value / 100 } }, null, null)}>
+                <Slider defaultValue={0} min={0} max={100} onChangeEnd={value => {
+                    setFilters({ ...filters, removeColor: { distance: value / 100 } })
+                    addToHistory(null, { removeColor: { distance: value / 100 } }, null, null)
+                }}>
                     <SliderContent />
                 </Slider>
             </Box>
@@ -88,18 +105,27 @@ export const Gamma = () => {
         <Flex sx={medium ? { ...panelStyle, width: "auto", overflowX: "auto", columnGap: ".5em" } : { ...panelStyle, flexFlow: "column", width: "15em" }}>
             <Box>
                 <Property prop="Red" value={filters.hasOwnProperty("Gamma") ? (filters.Gamma.gamma[0]).toPrecision(3) : "1.00"} />
-                <Slider defaultValue={1.00} min={0} max={10} step={0.01} onChange={value => gammaValue(0, value)} onChangeEnd={value => gammaValue(0, value, true)}>
+                <Slider defaultValue={1.00} min={0} max={10} step={0.01} onChangeEnd={value => {
+                    gammaValue(0, value)
+                    gammaValue(0, value, true)
+                }}>
                     <SliderContent />
                 </Slider>
             </Box>
             <Box>
                 <Property prop="Green" value={filters.hasOwnProperty("Gamma") ? (filters.Gamma.gamma[1]).toPrecision(3) : "1.00"} />
-                <Slider defaultValue={1.00} min={0} max={10} step={0.01} onChange={value => gammaValue(1, value)} onChangeEnd={value => gammaValue(1, value, true)}>
+                <Slider defaultValue={1.00} min={0} max={10} step={0.01} onChangeEnd={value => {
+                    gammaValue(1, value)
+                    gammaValue(1, value, true)
+                }}>
                     <SliderContent />
                 </Slider></Box>
             <Box>
                 <Property prop="Blue" value={filters.hasOwnProperty("Gamma") ? (filters.Gamma.gamma[2]).toPrecision(3) : "1.00"} />
-                <Slider defaultValue={1.00} min={0} max={10} step={0.01} onChange={value => gammaValue(2, value)} onChangeEnd={value => gammaValue(2, value, true)}>
+                <Slider defaultValue={1.00} min={0} max={10} step={0.01} onChangeEnd={value => {
+                    gammaValue(2, value)
+                    gammaValue(2, value, true)
+                }}>
                     <SliderContent />
                 </Slider>
             </Box>
@@ -107,39 +133,37 @@ export const Gamma = () => {
     )
 }
 
+const effects = {
+    Identity: [0, 0, 0, 0, 1, 0, 0, 0, 0],
+    Sharpen1: [0, -1, 0, -1, 5, -1, 0, -1, 0],
+    Sharpen2: [-1, -1, -1, -1, 9, -1, -1, -1, -1],
+    Lighten: [0, 0, 0, 0, 2, 0, 0, 0, 0],
+    Darken: [0, 0, 0, 0, 0.5, 0, 0, 0, 0],
+    BoxBlur: [1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9],
+    GaussianBlur: [1 / 16, 1 / 8, 1 / 16, 1 / 8, 1 / 4, 1 / 8, 1 / 16, 1 / 8, 1 / 16],
+    EdgeDetection: [0, 1, 0, 1, -4, 1, 0, 1, 0],
+    Emboss1: [1, 1, 1, 1, 0.7, -1, -1, -1, -1],
+    Emboss2: [-2, -1, 0, -1, 1, 1, 0, 1, 2]
+}
 export const Convolute = () => {
-    const effects = useRef({
-        Identity: [0, 0, 0, 0, 1, 0, 0, 0, 0],
-        Sharpen1: [0, -1, 0, -1, 5, -1, 0, -1, 0],
-        Sharpen2: [-1, -1, -1, -1, 9, -1, -1, -1, -1],
-        Lighten: [0, 0, 0, 0, 2, 0, 0, 0, 0],
-        Darken: [0, 0, 0, 0, 0.5, 0, 0, 0, 0],
-        BoxBlur: [1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9],
-        GaussianBlur: [1 / 16, 1 / 8, 1 / 16, 1 / 8, 1 / 4, 1 / 8, 1 / 16, 1 / 8, 1 / 16],
-        EdgeDetection: [0, 1, 0, 1, -4, 1, 0, 1, 0],
-        Emboss1: [1, 1, 1, 1, 0.7, -1, -1, -1, -1],
-        Emboss2: [-2, -1, 0, -1, 1, 1, 0, 1, 2]
-    })
     const { filters, setFilters, addToHistory } = useContext(MyContext)
     return (
-        <>
-            <Box w="max-content" sx={panelStyle}>
-                <Flex justifyContent="space-between" >
-                    <Text fontWeight="400" letterSpacing="1px" fontSize={15} mr="2em" mt=".2em">Effect</Text>
-                    <Select fontSize=".9em" h="2em" w="7em" border="1px solid var(--outline-color)" icon={<BsFillCaretDownFill fontSize=".6em" />} onChange={e => {
-                        setFilters({ ...filters, Convolute: { matrix: effects.current[e.target.value] } })
-                        addToHistory(null, { Convolute: { matrix: effects.current[e.target.value] } }, null, null)
-                    }}>{Object.keys(effects.current).map(effect => { return <option key={effect} value={effect}>{effect}</option> })}</Select>
-                </Flex>
-            </Box>
-        </>
+        <Box w="max-content" sx={panelStyle}>
+            <Flex justifyContent="space-between" >
+                <Text fontWeight="400" letterSpacing="1px" fontSize={15} mr="2em" mt=".2em">Effect</Text>
+                <Select fontSize=".9em" h="2em" w="7em" border="1px solid var(--outline-color)" icon={<BsFillCaretDownFill fontSize=".6em" />} onChange={e => {
+                    setFilters({ ...filters, Convolute: { matrix: effects[e.target.value] } })
+                    addToHistory(null, { Convolute: { matrix: effects[e.target.value] } }, null, null)
+                }}>{Object.keys(effects).map(effect => { return <option key={effect} value={effect}>{effect}</option> })}</Select>
+            </Flex>
+        </Box>
     )
 }
 
 export const Rotate = () => {
-    const { imgProps, setImgProps, addToHistory,medium } = useContext(MyContext)
+    const { imgProps, setImgProps, addToHistory, medium } = useContext(MyContext)
     const angle = useRef(0)
-    const updateImgProps = (prop, value) => {
+    const updateImgProps = useCallback((prop, value) => {
         if (prop === "rotate") {
             setImgProps({ ...imgProps, rotate: value })
             angle.current = value
@@ -158,10 +182,10 @@ export const Rotate = () => {
             setImgProps({ ...imgProps, ...newProp })
             addToHistory(null, null, newProp, null)
         }
-    }
+    },[])
     return (
         <>
-            <Grid w="15em" sx={panelStyle} gridAutoFlow={medium?"column":"row" }overflowX="auto" gap=".5em 1em" scrollSnapType="x mandatory">
+            <Grid w="15em" sx={panelStyle} gridAutoFlow={medium ? "column" : "row"} overflowX="auto" gap=".5em 1em" scrollSnapType="x mandatory">
                 <Box width="13.5em" scrollSnapAlign="center">
                     <Flex justifyContent="space-between">
                         <Text fontWeight="400" letterSpacing="1px" fontSize={15}>Rotation</Text>

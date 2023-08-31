@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useState, useEffect, useRef, useContext, useCallback } from 'react'
 import { Button, FormLabel, Input, Checkbox, HStack, Flex } from "@chakra-ui/react"
 import { myCanvas, dataURL, MyContext, panelStyle } from "./App"
 
@@ -7,7 +7,7 @@ const Dimension = ({ measure, onChange, state }) => {
         <HStack width="12em" scrollSnapAlign="center">
             <FormLabel htmlFor={"resize" + measure} marginRight={measure === "width" ? "1.1em" : ".75em"}>{measure.replace(measure[0], measure[0].toUpperCase())}
             </FormLabel>
-            <Input type="number" id={"resize" + measure} height="1.5em" width="6em" mb=".5em" onChange={e => onChange(measure, e.target.value)} value={state?.width} textAlign="center" border="1px solid var(--outline-color)" bg="var(--input-bg)" />
+            <Input type="number" id={"resize" + measure} height="1.5em" width="6em" mb=".5em" onChange={e => onChange(measure, e.target.value)} value={measure === "width" ? state?.width : state?.height} textAlign="center" border="1px solid var(--outline-color)" bg="var(--input-bg)" />
         </HStack>
     )
 }
@@ -23,7 +23,7 @@ export default function Resize() {
         }
     }, [dataURL.current])
 
-    const updateProps = (prop, value) => {
+    const updateProps = useCallback((prop, value) => {
         value = parseInt(value)
         if (isNaN(value)) {
             if (props.scaleChecked)
@@ -34,7 +34,7 @@ export default function Resize() {
         else {
             if (props.scaleChecked) {
                 if (prop === "width") {
-                    const height = Math.round((1 / originalProps.current.scaleFactor) * value)
+                    const height = Math.round(value / originalProps.current.scaleFactor)
                     setProps({ ...props, width: value, height: height })
                 } else {
                     const width = Math.round(originalProps.current.scaleFactor * value)
@@ -44,7 +44,7 @@ export default function Resize() {
                 prop === "width" ? setProps({ ...props, width: value }) : setProps({ ...props, height: value })
             }
         }
-    }
+    }, [])
 
     const onCancel = () => {
         setProps({ width: "", height: "", scaleChecked: true })

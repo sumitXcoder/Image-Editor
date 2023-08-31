@@ -4,8 +4,8 @@ import { myCanvas, MyContext, panelStyle } from './App'
 import { BsFillCaretDownFill } from 'react-icons/bs'
 const fontFamily = ["sans-serif", "serif", "Arial", "Helvetica", "Tahoma", "monospace", "Verdana", "Monaco", "Brush Script MT"]
 
-const img = document.createElement('img');
-img.src = "assets/remove.svg";
+export const img = document.createElement('img');
+img.src = "https://raw.githubusercontent.com/sumitXcoder/Image-Editor/dddc0e879896e14c43bbb40ddd03cd388c86e58a/assets/remove.svg"
 export default function Text() {
     const activeText = useRef(null)
     const { currentTab, medium } = useContext(MyContext)

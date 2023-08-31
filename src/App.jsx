@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, createContext, useContext } from "react"
+import { useState, useRef, useEffect, createContext, useContext,useCallback } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Pixelate, Blur, Vibrance, Noise, RemoveColor, Gamma, Convolute, Rotate, ImageFilters } from './Filters'
 import { Box, Button, Input, FormLabel, HStack, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Tooltip, Tabs, TabList, Tab, TabPanels, TabPanel, Center, Flex } from "@chakra-ui/react"
@@ -105,7 +105,7 @@ export default function App({ theme, setTheme }) {
   dataURL = useRef(null)
   wrapperRef = useRef(null)
   tabRef = useRef(0)
-  
+
   useEffect(() => {
     console.clear()
     setMedium(window.innerWidth < 960)
@@ -212,7 +212,7 @@ export default function App({ theme, setTheme }) {
     myCanvas.current?.setDimensions({ width: canvasProps.width, height: canvasProps.height })
   }, [canvasProps])
 
-  const addToHistory = (c = null, f = null, i = null, objects = null) => {
+  const addToHistory = useCallback((c = null, f = null, i = null, objects = null) => {
     const index = h[0].length - 1
     h[1] = []
     c = { ...h[0][index].canvasProps, ...(c || h[0][index].canvasProps) }
@@ -226,8 +226,7 @@ export default function App({ theme, setTheme }) {
     i = { ...h[0][index].imgProps, ...(i || h[0][index].imgProps) }
     objects = _.cloneDeep({ ...h[0][index].objects, ...(objects || h[0][index].objects) })
     h[0].push(new State(c, f, i, objects))
-    console.log(...h[0])
-  }
+  }, [])
 
   const undo = () => {
     const length = h[0].length
@@ -294,7 +293,7 @@ export default function App({ theme, setTheme }) {
         <Box position="absolute" style={medium ? { top: "46%", left: "50%" } : { top: "50%", left: "60%" }} transform="translate(-50%,-50%)" p="0" zIndex="15" ref={wrapperRef} bg="var(--top-button-bg)" outline="1px dotted var(--color)">
           <canvas ref={canvasRef} style={{ zIndex: "0" }}></canvas>
         </Box>
-        <Tabs orientation={medium ? "horizontal" : "vertical"} onChange={e => setCurrentTab(e)} w="100%" height="max-content" style={medium ? {} : { position: "relative", top: "45%", transform: "translateY(-50%)" }} ref={tabRef}>
+        <Tabs orientation={medium ? "horizontal" : "vertical"} onChange={e => setCurrentTab(e)} w="100%" height="max-content" style={medium ? {} : { position: "relative", top: "45%", transform: "translateY(-50%)", zIndex: "1" }} ref={tabRef}>
           <Box position="relative" style={medium ? { bottom: "2px", width: "100%", marginTop: "2px" } : { width: "max-content", paddingLeft: ".25em" }} >
             <TabList style={medium ? { ...sideBar.sx, ...sideBar.horizontal } : { ...sideBar.sx, ...sideBar.vertical }} _hover={medium ? { ...sideBar.hover, width: "auto" } : sideBar.hover} >
               {tabs.map(tab => {
@@ -333,8 +332,8 @@ export default function App({ theme, setTheme }) {
             <FullScreen isMedium={medium} />
             <Zoom />
             <HStack mr="5em">
-              <Button border="1px solid var(--outline-color-low)" borderRadius=".25em" bg="var(--top-button-bg)" color="var(--color)" p="0" _hover={{ borderColor: "var(--outline-color)" }} onClick={undo}><FontAwesomeIcon icon="fa-rotate-left" /></Button>
-              <Button border="1px solid var(--outline-color-low)" borderRadius=".25em" bg="var(--top-button-bg)" color="var(--color)" p="0" _hover={{ borderColor: "var(--outline-color)" }} onClick={redo}><FontAwesomeIcon icon="fa-rotate-right" /></Button>
+              <Button border="1px solid var(--outline-color-low)" borderRadius=".25em" bg="var(--top-button-bg)" color="var(--color)" p="0" _hover={{ borderColor: "var(--outline-color)" }} onClick={undo} zIndex="1"><FontAwesomeIcon icon="fa-rotate-left" /></Button>
+              <Button border="1px solid var(--outline-color-low)" borderRadius=".25em" bg="var(--top-button-bg)" color="var(--color)" p="0" _hover={{ borderColor: "var(--outline-color)" }} onClick={redo} zIndex="1" ><FontAwesomeIcon icon="fa-rotate-right" /></Button>
             </HStack>
           </Flex>
         }
@@ -353,7 +352,8 @@ const FullScreen = ({ isMedium }) => {
   }, [isFullScreen])
   return (
     <Button size={isMedium ? "sm" : "md"} border="1px solid var(--outline-color-low)" borderRadius=".25em" bg="var(--top-button-bg)" color="var(--color)" p="0"
-      ml={isMedium ? ".1em" : "10em"} _hover={{ borderColor: "var(--outline-color)" }} onClick={() => setIsFullScreen(prev => !prev)}><FontAwesomeIcon icon={isFullScreen ? "fa-compress" : "fa-expand"} style={{ fontSize: "1em" }} />
+      ml={isMedium ? ".1em" : "10em"} _hover={{ borderColor: "var(--outline-color)" }} onClick={() => setIsFullScreen(prev => !prev)}
+      zIndex="1" ><FontAwesomeIcon icon={isFullScreen ? "fa-compress" : "fa-expand"} style={{ fontSize: "1em" }} />
     </Button>
   )
 }
