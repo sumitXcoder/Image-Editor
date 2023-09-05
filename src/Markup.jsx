@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useCallback } from "react"
+import { useState, useEffect, useContext } from "react"
 import { Box, Tabs, TabList, Tab, TabPanels, TabPanel, Input, FormLabel, Text, Slider, Flex } from "@chakra-ui/react"
 import { myCanvas, MyContext, panelStyle, SliderContent, dataURL } from "./App"
 import { BsPencil, BsCircle, BsEraser } from 'react-icons/bs'
@@ -24,16 +24,16 @@ const MySlider = ({ min = 0, max = 100, defaultValue = 2, value, callback }) => 
         </Slider>
     )
 }
+var i = 0
 export default function Markup() {
     const { currentTab, addToHistory, medium } = useContext(MyContext)
     const [tab, setTab] = useState(0)
     const [brushes, setBrushes] = useState([{ width: 2, color: "#000" }, { width: 2, color: "#000" }, { width: 30, color: "#000", density: 50 }, { width: 5 }])
-    var i = 0
-    const handleChange = useCallback(obj => {
+    const handleChange = obj => {
         const data = [...brushes]
         Object.assign(data[tab], obj)
         setBrushes(data)
-    }, [])
+    }
 
     useEffect(() => {
         if (myCanvas.current)
@@ -70,7 +70,7 @@ export default function Markup() {
                             <MySlider value={"width"} callback={handleChange} />
                         </Box>
                         <FormLabel width="6em">Color
-                            <Input type="color" size="2em" width="2em" height="2em" border="1px solid var(--outline-color)" position="relative" top=".4em" left="1em" onChange={color => handleChange({ color: color.target.value.toUpperCase() })} />
+                            <Input type="color" size="2em" width="2em" height="2em" border="1px solid var(--outline-color)" position="relative" top=".4em" left="1em" onChange={color => handleChange({ color: color.target.value })} />
                         </FormLabel>
                     </TabPanel>
                     <TabPanel sx={medium ? { display: "flex", justifyContent: "space-between", columnGap: "1em", overflowX: "auto" } : {}}>
@@ -79,7 +79,7 @@ export default function Markup() {
                             <MySlider value={"width"} callback={handleChange} />
                         </Box>
                         <FormLabel width="6em">Color
-                            <Input type="color" size="2em" width="2em" height="2em" border="1px solid var(--outline-color)" position="relative" top=".4em" left="1em" onChange={color => handleChange({ color: color.target.value.toUpperCase() })
+                            <Input type="color" size="2em" width="2em" height="2em" border="1px solid var(--outline-color)" position="relative" top=".4em" left="1em" onChange={color => handleChange({ color: color.target.value })
                             } />
                         </FormLabel>
                     </TabPanel>
@@ -93,7 +93,7 @@ export default function Markup() {
                             <MySlider defaultValue={50} value={"density"} callback={handleChange} />
                         </Box >
                         <FormLabel width="6em">Color
-                            <Input type="color" size="2em" width="2em" height="2em" border="1px solid var(--outline-color)" position="relative" top=".4em" left="1em" onChange={color => handleChange({ color: color.target.value.toUpperCase() })
+                            <Input type="color" size="2em" width="2em" height="2em" border="1px solid var(--outline-color)" position="relative" top=".4em" left="1em" onChange={color => handleChange({ color: color.target.value })
                             } />
                         </FormLabel>
                     </TabPanel>
